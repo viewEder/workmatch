@@ -1,7 +1,6 @@
 from typing import Optional, Type
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
-from datetime import datetime
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
 from .models import User, Links, Excerp
@@ -9,6 +8,7 @@ from datauser.models import Academy, ProjectDev, Skills, EmploymentHistory, Hobb
 from .forms import SingUpUserFormWithEmail
 from django.urls import reverse_lazy
 from django import forms
+from core.util import get_edad
 
 # Create your views here.
 class ProfileUserView(TemplateView):
@@ -24,20 +24,6 @@ class ProfileUserView(TemplateView):
     facts_list = []
     age_user = 0
 
-    def get_edad(self, fecha_nacimiento):
-        
-        try:
-            if datetime.now().month <= fecha_nacimiento.month and datetime.now().day <= fecha_nacimiento.day:
-                # Si el mes y el día actual es menor o igual al del nacimiento
-                edad = (datetime.now().year-1) - fecha_nacimiento.year
-            else:
-                edad = datetime.now().year - fecha_nacimiento.year
-        except:
-            edad = 'No es posible calcular la edad'
-
-        return edad
-
-
     def get(self, request, *args, **kwargs): 
         links_user = Links.objects.filter(user = request.user.id)
         excerp_user = Excerp.objects.filter(user = request.user.id)
@@ -51,7 +37,7 @@ class ProfileUserView(TemplateView):
         # Para calcular la fecha de nacimiento:
         user = request.user
         fechanace = user.birthday
-        self.age_user = self.get_edad(fechanace)
+        self.age_user = get_edad(fechanace)
         
         # Enlaces (links):
         for item in links_user:
