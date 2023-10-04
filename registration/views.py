@@ -1,11 +1,22 @@
 from typing import Optional, Type
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
+
+# vistas basadas en clases:
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
+from django.views.generic.edit import UpdateView
+
+# Método decorador de login:
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from .models import User, Links, Excerp
 from datauser.models import Academy, ProjectDev, Skills, EmploymentHistory, HobbiesExtras, Facts
-from .forms import SingUpUserFormWithEmail
+
+# Formularios propios:
+from .forms import SingUpUserFormWithEmail, ProfileUserForm
+
 from django.urls import reverse_lazy
 from django import forms
 from core.util import get_edad
@@ -156,7 +167,6 @@ class ProfileUserView(TemplateView):
                                                                'edad': self.age_user
                                                              })
 
-
 class SignUpUserView(CreateView):
     form_class= SingUpUserFormWithEmail
     template_name = 'registration/signup.html'
@@ -173,3 +183,17 @@ class SignUpUserView(CreateView):
         form.fields['password2'].widget = forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Confirma el Password'})
 
         return form
+    
+
+@method_decorator(login_required, name='dispatch')
+class ProfileUserUpdate(UpdateView):
+    form_class = ProfileUserForm
+    success_url = reverse_lazy('perfil')
+    template_name = 'registration/profile_form.html'
+
+    # Métodos:
+    def get_object(self):
+        profile, created = User.objects.get_or_create(user = self.request.user) # QuerySet de usuario: Select * from user where 1=1
+        print(profile)
+        return profile
+

@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Registrate o ingresa{% endblock %}
+{% load static %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block contenido %}
+    <section class="container">
+        <div class="row">
+            {{ form.as_p }}
+        </div>
+    </section>
+{% endblock %}
