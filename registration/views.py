@@ -22,6 +22,7 @@ from django import forms
 from core.util import get_edad
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class ProfileUserView(TemplateView):
     # Template:
     template_name = 'registration/profile.html'  
