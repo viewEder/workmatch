@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block titulo %}Registrate o ingresa{% endblock %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
 {% load static %}
 
 {% block estilo %}
@@ -8,7 +8,73 @@
 {% block contenido %}
     <section class="container">
         <div class="row">
-            {{ form.as_p }}
+            <h1 class="h3 mt-5 mb-5">Datos de Usuario</h1>
+            <form method="POST" class="col-12">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="mb-3 col-4">
+                        <label for="id_username" class="form-label text-primary">Foto</label>
+                        {{ form.photo }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_username" class="form-label text-primary">NickName - Alias</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_first_name" class="form-label text-primary">Nombres de Usuario</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Apellidos de Usuario</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Tipo de Documento de identidad</label>
+                        {{ form.tipo_id }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Número de Identification</label>
+                        {{ form.identification }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Teléfono</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">País</label>
+                        {{ form.country }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Ciudad</label>
+                        {{ form.city }}
+                    </div>
+                    
+                    <div class="mb-3 col-12 ">
+                        <label for="id_last_name" class="form-label text-primary">Dirección</label>
+                        {{ form.addres }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Fecha de Nacimiento</label>
+                        {{ form.birthday }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">Profesión</label>
+                        {{ form.ocupation_job }}
+                    </div>
+                    <div class="mb-3 col-4">
+                        <label for="id_last_name" class="form-label text-primary">¿Se puede desplazar?</label>
+                        {{ form.relocate }}
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-3">
+                            <a href="{% url 'perfil' %}" class="btn btn-outline-dark">Cancelar</a>              
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-success">Confirmar</button>
+                        </div>
+                    </div>
+                </div>             
+            </form>
         </div>
     </section>
 {% endblock %}

@@ -25,7 +25,7 @@ class ProfileUserForm(forms.ModelForm):
             'username':  forms.TextInput(attrs={'class': 'form-control'}),
             'first_name':  forms.TextInput(attrs={'class': 'form-control'}),
             'last_name':  forms.TextInput(attrs={'class': 'form-control'}),
-            'tipo_id':  forms.Select(attrs={'class': 'form-control'}),
+            'tipo_id':  forms.Select(attrs={'class': 'form-select'}),
             'identification':  forms.TextInput(attrs={'class': 'form-control'}),
             'photo':  forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'country':  forms.TextInput(attrs={'class': 'form-control'}),
@@ -33,6 +33,6 @@ class ProfileUserForm(forms.ModelForm):
             'addres':  forms.TextInput(attrs={'class': 'form-control'}),
             'phone':  forms.TextInput(attrs={'class': 'form-control'}),
             'birthday':  forms.DateInput(attrs={'class': 'form-control'}),
-            'ocupation_job':  forms.TextInput(attrs={'class': 'form-control'}),
-            'relocate': forms.CheckboxInput(attrs={'class': 'form-control'})
+            'ocupation_job': forms.TextInput(attrs={'class': 'form-control'}),
+            'relocate': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }
