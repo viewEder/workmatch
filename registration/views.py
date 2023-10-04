@@ -60,8 +60,8 @@ class ProfileUserView(TemplateView):
 
         # Hobbies de usuario:
         for hobbies in hobbies_user:
-            if hobbies.hobby not in self.hobbies:
-                self.hobbies.append(hobbies.hobby)
+            if hobbies.hobby not in self.hobbies_list:
+                self.hobbies_list.append(hobbies.hobby)
 
         # Por Estudios realizados
         for item in academy_users:
@@ -152,6 +152,7 @@ class ProfileUserView(TemplateView):
                                                                'habilidades': self.skill_list,
                                                                'empleos': self.employment_list,
                                                                'hechos': self.facts_list,
+                                                               'hobbies': self.hobbies_list,
                                                                'edad': self.age_user
                                                              })
 
