@@ -88,11 +88,3 @@ class Excerp(models.Model):
         for item in self.EXCERPTION_TYPE:
             if self.excerption_type == item[0]:
                 return f'{self.user} - {item[1]}'
-
-
-# Metodo de datos Seguros de Usuario:
-@receiver(post_save, sender=User)
-def ensure_profile_exists(sender, instance, **kwargs):
-    if kwargs.get('created', False):
-        User.objects.get_or_create(user = instance)
-

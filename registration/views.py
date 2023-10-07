@@ -196,4 +196,3 @@ class ProfileUserUpdate(UpdateView):
     def get_object(self):
         profile, created = User.objects.get_or_create(id = self.request.user.id) # QuerySet de usuario: Select * from user where id = request.user.id
         return profile
-
