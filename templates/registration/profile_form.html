@@ -15,12 +15,13 @@
                     <div class="col-4">
                         <div class="row">
                             <div class="mb-3 col-4">
-                                {% if request.user.photo.url %}
+                                {% if request.user.photo %}
                                     <img src="{{ request.user.photo.url }}" width="420" alt="" class="img-fuid">
                                     {{ form.photo }}
                                 {% else %}
-                                    <img src="{% static 'media/img/profile-default.png' %}" width="420" alt="" class="img-fuid">
+                                    <img src="{% static 'media/img/users/profile-default.png' %}" width="320" alt="" class="img-fuid">
                                     <i class="fa-solid fa-user-pen"></i>
+                                    {{ form.photo }}
                                 {% endif %}
                                 </div>
                         </div>
