@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AcademyDetailView, AcamedyListView, AcademyCreateView, SkillsCreateView, HistoryCreateView, ProjectCreateView
+from .views import AcademyDetailView, AcamedyListView, AcademyCreateView, SkillsCreateView, HistoryCreateView, ProjectCreateView, AcademyCreateView
 
 urlpatterns =[
     path('academy-list/', AcamedyListView.as_view(), name = 'academy-list'),

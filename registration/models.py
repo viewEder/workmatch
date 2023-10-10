@@ -95,4 +95,3 @@ class Excerp(models.Model):
 def ensure_profile_exists(sender, instance, **kwargs):
     if kwargs.get('created', False):
         User.objects.get_or_create(id = instance.id) # Traiga el dato del usuario con id = request.user.id
-
