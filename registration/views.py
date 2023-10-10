@@ -1,16 +1,28 @@
 from typing import Optional, Type
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
-from datetime import datetime
+
+# vistas basadas en clases:
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
+from django.views.generic.edit import UpdateView
+
+# Método decorador de login:
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 from .models import User, Links, Excerp
 from datauser.models import Academy, ProjectDev, Skills, EmploymentHistory, HobbiesExtras, Facts
-from .forms import SingUpUserFormWithEmail
+
+# Formularios propios:
+from .forms import SingUpUserFormWithEmail, ProfileUserForm
+
 from django.urls import reverse_lazy
 from django import forms
+from core.util import get_edad
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class ProfileUserView(TemplateView):
     # Template:
     template_name = 'registration/profile.html'  
@@ -23,20 +35,6 @@ class ProfileUserView(TemplateView):
     employment_list = []
     facts_list = []
     age_user = 0
-
-    def get_edad(self, fecha_nacimiento):
-        
-        try:
-            if datetime.now().month <= fecha_nacimiento.month and datetime.now().day <= fecha_nacimiento.day:
-                # Si el mes y el día actual es menor o igual al del nacimiento
-                edad = (datetime.now().year-1) - fecha_nacimiento.year
-            else:
-                edad = datetime.now().year - fecha_nacimiento.year
-        except:
-            edad = 'No es posible calcular la edad'
-
-        return edad
-
 
     def get(self, request, *args, **kwargs): 
         links_user = Links.objects.filter(user = request.user.id)
@@ -51,7 +49,7 @@ class ProfileUserView(TemplateView):
         # Para calcular la fecha de nacimiento:
         user = request.user
         fechanace = user.birthday
-        self.age_user = self.get_edad(fechanace)
+        self.age_user = get_edad(fechanace)
         
         # Enlaces (links):
         for item in links_user:
@@ -74,8 +72,8 @@ class ProfileUserView(TemplateView):
 
         # Hobbies de usuario:
         for hobbies in hobbies_user:
-            if hobbies.hobby not in self.hobbies:
-                self.hobbies.append(hobbies.hobby)
+            if hobbies.hobby not in self.hobbies_list:
+                self.hobbies_list.append(hobbies.hobby)
 
         # Por Estudios realizados
         for item in academy_users:
@@ -166,9 +164,9 @@ class ProfileUserView(TemplateView):
                                                                'habilidades': self.skill_list,
                                                                'empleos': self.employment_list,
                                                                'hechos': self.facts_list,
+                                                               'hobbies': self.hobbies_list,
                                                                'edad': self.age_user
                                                              })
-
 
 class SignUpUserView(CreateView):
     form_class= SingUpUserFormWithEmail
@@ -186,3 +184,15 @@ class SignUpUserView(CreateView):
         form.fields['password2'].widget = forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Confirma el Password'})
 
         return form
+    
+
+@method_decorator(login_required, name='dispatch')
+class ProfileUserUpdate(UpdateView):
+    form_class = ProfileUserForm
+    success_url = reverse_lazy('perfil')
+    template_name = 'registration/profile_form.html'
+
+    # Métodos:
+    def get_object(self):
+        profile, created = User.objects.get_or_create(id = self.request.user.id) # QuerySet de usuario: Select * from user where id = request.user.id
+        return profile

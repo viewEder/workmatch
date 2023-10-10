@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Registrate o ingresa{% endblock %}
+{% load static %}
+
+{% block contenido %}
+<section class="container">
+    <div class="row">
+        <h1 class="h3 text-center text-primary">Registrate</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <button type="reset" class="btn btn-outline-dark">Cancelar</button>              
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Confirmar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

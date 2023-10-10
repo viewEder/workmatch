@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Importamos la libreria de texto enriquecido:
 from ckeditor.fields import RichTextField
+# Para la actualización de datos de usuario:
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 # # funcion para la carga de imagenes de usuario:
 def upload_image(instance, filename):
@@ -87,3 +90,8 @@ class Excerp(models.Model):
                 return f'{self.user} - {item[1]}'
 
 
+# Metodo de datos Seguros de Usuario:
+@receiver(post_save, sender=User)
+def ensure_profile_exists(sender, instance, **kwargs):
+    if kwargs.get('created', False):
+        User.objects.get_or_create(id = instance.id) # Traiga el dato del usuario con id = request.user.id

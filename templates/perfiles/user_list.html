@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+{% block titulo %}{{ request.user.first_name }}'s Portfolio{% endblock %}
+{% load static %}
+
+{% block contenido %}
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  <a class="btn btn-sm btn-info col-sm-3 mt-3 mb-3 text-light" href="{% url 'inicio' %}">Volver al inicio</a>
+                </div>
+                <div class="col-6">
+                  {% if is_paginated %}
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination justify-content-end">
+                        {% if page_obj.has_previous %}
+                          <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previo</a>
+                          </li>
+                        {% endif %}
+                        {% for page in paginator.page_range %}
+                            <li class="page-item {% if page_obj.number == page %}active{% endif%}">
+                              <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                    </nav>
+                    {% else %}
+                      <span class="text-danger">Aquí va el paginador</span>
+                    {% endif %}
+                </div>
+              </div>
+            </div>
+            
+            {% for item in user_list %}
+            <div class="card mb-3 col-4">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    {% if item.photo %}
+                      <img src="{{ item.photo.url }}" class="img-fluid" alt="Foto de usuario">
+                    {% else %}
+                      <img src="{% static 'media/img/user-default.png' %}" alt="Foto usuario por defecto" class="img-fluid rounded-circle col-6">
+                    {% endif %}    
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title text-primary"><a href="{% url 'usuario_view' item.username %}" data-toggle="tooltip" data-placement="top" title="Ver un poco de {{item.first_name}}">{{ item.first_name }} {{ item.last_name }}</a></h4>
+                      <h5 class="card-title text-info">{{ item.ocupation_job }} </h5>
+                      {% if request.user.is_authenticated %}
+                        <p class="card-text"> <a href="" class="linkedin">Conocer más de este usuario...</a></p>
+                      {% endif %}
+                      <p class="card-text"><small class="text-muted">Registrado desde: {{ item.date_joined|date:"Y-m" }}</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <a href="{% url 'perfil' %}">No se encontró nada</a>
+            {% endfor %}
+        </div>
+    </section>
+   
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+        
+    
+{% endblock %}

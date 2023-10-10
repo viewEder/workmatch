@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Registrate o ingresa{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">
+{% endblock %}
+
+{% block contenido %}
+
+        <main class="form-signin w-25 m-auto mt-5">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="text-center">
+                    <img 
+                    class="mb-4 img-fluid" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" 
+                    alt="" 
+                    width="72">
+                </div>                
+                <h1 class="h3 mb-3 fw-normal text-center">Ingresar</h1>
+                {% if 'register' in request.GET %}
+                    <div class="alert alert-success text-center" role="alert">
+                        Ya estás dentro! Ingresa:
+                    </div>
+                {% endif %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger text-capitalize" role="alert">
+                        Usuario y/o Contraseña incorrectos!!
+                    </div>
+                {% endif %}
+                <div class="form-floating">
+                    <input 
+                        type="email" 
+                        class="form-control" 
+                        id="id_username" 
+                        name="username"
+                        required 
+                        placeholder="name@example.com">
+                    <label for="floatingInput">Correo electrónico</label>
+                </div>
+                <div class="form-floating mt-2">
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="id_password" 
+                        name="password"
+                        required
+                        placeholder="Password">
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+            
+                <button class="btn btn-primary mt-3 w-100 py-2" type="submit">Ingresar</button>
+                <a href="{% url 'registro' %}" class="btn btn-success mt-3 mb-3 w-100 py-2" type="button">Registrarse</a>
+                <a href="{% url 'inicio' %}">Volver al Inicio</a>
+                <p class="mt-5 mb-3 text-center text-body-secondary">© 2023</p>
+            </form>
+        </main>
+
+{% endblock %}
