@@ -20,7 +20,7 @@ from django import forms
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
 class AcademyCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('academy-create')
     template_name = 'datauser/academy_form.html'
     form_class = AcademyCreateForm
     model = Academy
