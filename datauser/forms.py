@@ -1,5 +1,7 @@
 from django import forms
 from .models import Academy, Skills, EmploymentHistory, ProjectDev
+from django import forms
+from .models import Academy
 
 class AcademyCreateForm(forms.ModelForm):
     class Meta:
@@ -51,8 +53,7 @@ class ProjectCreateForm(forms.ModelForm):
             'url_repo': forms.TextInput(attrs={'class':'form-control', 'type':'url'}),
             'year_production': forms.NumberInput(attrs={'class':'form-control'}),
             'developing': forms.CheckboxInput(attrs={'class':'form-check-input'})
-        }from django import forms
-from .models import Academy
+        }
 
 class AcademyCreateForm(forms.ModelForm):
     class Meta:
