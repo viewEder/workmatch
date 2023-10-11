@@ -170,6 +170,7 @@ SESSION_COOKIE_SECURE = False
 <<<<<<< HEAD
 
 CSRF_COOKIE_SECURE = False
+<<<<<<< HEAD
 
 
 
@@ -200,3 +201,5 @@ CSRF_COOKIE_SECURE = False
 
 CSRF_COOKIE_SECURE = False
 >>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905
+=======
+>>>>>>> 35d0a57598cb14328213487a6dd9fea33da2f79f

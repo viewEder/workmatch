@@ -199,4 +199,3 @@ class ProfileUserUpdate(UpdateView):
         return profile
 =======
         return profile
->>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905

@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block contenido %}
+    {% include 'core/menu.html' %}        
+        <section class="container mt-3">
+            <h1 class="h3 text-center mt-3 mb-3">Agregar proyectos desarrollados</h1>
+            <form method="post" class="row">
+                <div class="mb-3 col-6">
+                    <label for="id_stack">Tecnologias Usadas</label>
+                    {{ form.stack }}
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="id_name_project">Nombre de Proyecto</label>
+                    {{ form.name_project }}
+                </div>
+                <div class="mb-3 col-12">
+                    <label for="id_resume_project">Descripcion</label>
+                    {{ form.resume_project }}
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="id_url_repo">Url Repositorio</label>
+                    {{ form.url_repo }}
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="id_year_production">Año en Producción</label>
+                    {{ form.year_production }}
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="id_developing">Aún en desarrollo</label>
+                    {{ form.developing }}
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-3">
+                        <a href="{% url 'perfil-edit' %}" class="btn btn-outline-dark">Cancelar</a>              
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-success">Actualizar Datos</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+{% endblock %}
