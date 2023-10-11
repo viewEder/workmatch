@@ -26,10 +26,12 @@ class AcademyCreateView(CreateView, ListView):
     model = Academy
     
     def form_valid(self, form):
+        """ Cuando el formulario se envía, el campo foreign key USER lo tomará del usuario logueado """
         form.instance.user = self.request.user
         return super().form_valid(form)
     
     def get_queryset(self):
+        """ Método para filtrar los datos del usuario que se encuentra logueado """
         return super().get_queryset().filter(user = self.request.user.id)
     
 class AcademyDetailView(DetailView):
