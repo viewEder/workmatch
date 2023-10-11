@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block contenido %}
+    {% include 'core/menu.html' %}
+    <section class="container mt-3">
+        <h1 class="h3 text-center mt-3 mb-3">Agregar habilidades</h1>
+        <form method="post" class="row">
+            <div class="mb-3 col-6">
+                <label for="id_skill">Habilidad</label>
+                {{ form.skill }}
+            </div>
+            <div class="mb-3 col-6">
+                <label for="id_level">Nivel</label>
+                {{ form.level }}
+            </div>
+            <div class="mb-3 col-12">
+                <label for="id_description">Descripción</label>
+                {{ form.description }}
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'perfil-edit' %}" class="btn btn-outline-dark">Cancelar</a>              
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar Datos</button>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}

@@ -6,91 +6,98 @@
 
 {% endblock %}
 {% block contenido %}
-    {% include 'core/menu.html' %}
-    <section class="container">
+{% include 'core/menu.html' %}
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Datos de Usuario</h1>
+    <form method="POST" class="border p-4" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {% if request.user.photo %}
+                    <div class="row">
+                        <img src="{{ request.user.photo.url }}" width="320" alt="" class="img-fluid">
+                    </div>
+                    <div class="row">
+                        {{ form.photo }}
+                    </div>
+                    {% else %}
+                    <div class="row">
+                        <img src="{% static 'media/img/users/profile-default.png' %}" width="320" alt="" class="img-fluid">
+                    </div>
+                    <div class="row">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.photo }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
 
-            <h1 class="h3 mt-5 mb-5">Datos de Usuario</h1>
-            <form method="POST" class="col-12" enctype="multipart/form-data">
-                {% csrf_token %}
+            <div class="col-md-8">
                 <div class="row">
-                    <div class="col-4">
-                        <div class="row">
-                            <div class="mb-3 col-4">
-                                {% if request.user.photo %}
-                                    <img src="{{ request.user.photo.url }}" width="420" alt="" class="img-fuid">
-                                    {{ form.photo }}
-                                {% else %}
-                                    <img src="{% static 'media/img/users/profile-default.png' %}" width="320" alt="" class="img-fuid">
-                                    <i class="fa-solid fa-user-pen"></i>
-                                    {{ form.photo }}
-                                {% endif %}
-                                </div>
-                        </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_username" class="form-label text-primary">NickName - Alias</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_first_name" class="form-label text-primary">Nombres de Usuario</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_last_name" class="form-label text-primary">Apellidos de Usuario</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_tipo_id" class="form-label text-primary">Tipo de Documento de identidad</label>
+                        {{ form.tipo_id }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_identification" class="form-label text-primary">Número de Identification</label>
+                        {{ form.identification }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_phone" class="form-label text-primary">Teléfono</label>
+                        {{ form.phone }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_country" class="form-label text-primary">País</label>
+                        {{ form.country }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_city" class="form-label text-primary">Ciudad</label>
+                        {{ form.city }}
                     </div>
 
-                    <div class="col-8">
-                        <div class="row">
-                            <div class="mb-3 col-4">
-                                <label for="id_username" class="form-label text-primary">NickName - Alias</label>
-                                {{ form.username }}
+                    <div class="mb-3 col-12 ">
+                        <label for="id_addres" class="form-label text-primary">Dirección</label>
+                        {{ form.addres }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_birthday" class="form-label text-primary">Fecha de Nacimiento</label>
+                        {{ form.birthday }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_ocupation_job" class="form-label text-primary">Profesión</label>
+                        {{ form.ocupation_job }}
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="id_relocate" class="form-label text-primary">¿Se puede desplazar?</label>
+                        {{ form.relocate }}
+                    </div>
+                    <div class="col-12 mt-3">
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <a href="{% url 'perfil' %}" class="btn btn-outline-dark">Cancelar</a>
                             </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_first_name" class="form-label text-primary">Nombres de Usuario</label>
-                                {{ form.first_name }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Apellidos de Usuario</label>
-                                {{ form.last_name }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Tipo de Documento de identidad</label>
-                                {{ form.tipo_id }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Número de Identification</label>
-                                {{ form.identification }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Teléfono</label>
-                                {{ form.phone }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">País</label>
-                                {{ form.country }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Ciudad</label>
-                                {{ form.city }}
-                            </div>
-                            
-                            <div class="mb-3 col-12 ">
-                                <label for="id_last_name" class="form-label text-primary">Dirección</label>
-                                {{ form.addres }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Fecha de Nacimiento</label>
-                                {{ form.birthday }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">Profesión</label>
-                                {{ form.ocupation_job }}
-                            </div>
-                            <div class="mb-3 col-4">
-                                <label for="id_last_name" class="form-label text-primary">¿Se puede desplazar?</label>
-                                {{ form.relocate }}
-                            </div>
-                            <div class="row justify-content-end">
-                                <div class="col-3">
-                                    <a href="{% url 'perfil' %}" class="btn btn-outline-dark">Cancelar</a>              
-                                </div>
-                                <div class="col-3">
-                                    <button type="submit" class="btn btn-success">Actualizar Datos</button>
-                                </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-success">Actualizar Datos</button>
                             </div>
                         </div>
                     </div>
-                </div>             
-            </form>
+                </div>
+            </div>
+        </div>
+    </form>
 
-    </section>
+</section>
 {% endblock %}
