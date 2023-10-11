@@ -27,7 +27,7 @@ class AcademyCreateView(CreateView):
 
 =======
 class AcademyCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('academy-create')
     template_name = 'datauser/academy_form.html'
     form_class = AcademyCreateForm
     model = Academy
