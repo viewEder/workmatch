@@ -61,7 +61,6 @@
 <section class="container mt-3">
     <div class="row">
         {% for item in object_list %}
-        <div class="card-group">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.company }}: {{ item.start_date }} - {{ item.end_date }}</h5>
@@ -74,7 +73,6 @@
                     </small>
                 </div>
             </div>
-        </div>
         {% empty %}
             <p class="text-center">Aún no has registrado tu historia laboral. Empecemos!!</p>
         {% endfor %}

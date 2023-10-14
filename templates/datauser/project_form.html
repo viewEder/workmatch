@@ -56,8 +56,7 @@
 
 <section class="container mt-3">
     <div class="row">
-        {% for item in object_list %}
-        <div class="card-group">
+        {% for item in object_list %
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.name_project }}: {{ item.year_production }}</h5>
@@ -70,7 +69,6 @@
                     </small>
                 </div>
             </div>
-        </div>
         {% empty %}
         <p class="text-center">Aún no has registrado tu proyectos desarrollados. Empecemos!!</p>
         {% endfor %}
