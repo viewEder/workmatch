@@ -1,7 +1,6 @@
 from django import forms
-from .models import Academy, Skills, EmploymentHistory, ProjectDev
-from django import forms
-from .models import Academy
+from .models import Academy, Skills, EmploymentHistory, ProjectDev, Stack
+
 
 class AcademyCreateForm(forms.ModelForm):
     class Meta:
@@ -36,7 +35,7 @@ class HistoryCreateForm(forms.ModelForm):
             'stack': forms.Select(attrs={'class':'form-select'}),
             'company': forms.TextInput(attrs={'class':'form-control'}),
             'position': forms.TextInput(attrs={'class':'form-control'}),
-            'job_description': forms.TextInput(attrs={'class':'form-control'}),
+            'job_description': forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'start_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
             'end_date': forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
             'still_work': forms.CheckboxInput(attrs={'class':'form-check-input'}),
@@ -49,22 +48,16 @@ class ProjectCreateForm(forms.ModelForm):
         widgets = {
             'stack': forms.Select(attrs={'class':'form-select'}),
             'name_project': forms.TextInput(attrs={'class':'form-control'}),
-            'resume_project': forms.TextInput(attrs={'class':'form-control'}),
+            'resume_project': forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'url_repo': forms.TextInput(attrs={'class':'form-control', 'type':'url'}),
             'year_production': forms.NumberInput(attrs={'class':'form-control'}),
             'developing': forms.CheckboxInput(attrs={'class':'form-check-input'})
         }
 
-class AcademyCreateForm(forms.ModelForm):
+class StackCreateForm(forms.ModelForm):
     class Meta:
-        model = Academy
-        fields = ['type_degree','academy_name','degree_obtained','degree_esp','start_date','finish_date','in_progress']
+        model = Stack
+        fields = ['name_stack',]
         widgets = {
-            'type_degree': forms.Select(attrs={'class':'form-select'}),
-            'academy_name': forms.TextInput(attrs={'class':'form-control'}),
-            'degree_obtained': forms.TextInput(attrs={'class':'form-control'}),
-            'degree_esp': forms.TextInput(attrs={'class':'form-control'}),
-            'start_date': forms.DateInput(attrs={'class':'form-control'}),
-            'finish_date': forms.DateInput(attrs={'class':'form-control'}),
-            'in_progress': forms.CheckboxInput(attrs={'class':'form-check-input'}),
+            'name_stack': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Python, Django, MERN'})
         }
