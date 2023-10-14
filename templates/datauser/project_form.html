@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 h3" id="exampleModalLabel">Agregar proyectos desarrollados</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="container mt-3 row">
+                        <div class="mb-3 col-6">
+                            <label for="id_stack">Tecnologias Usadas</label>
+                            {{ form.stack }}
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="id_name_project">Nombre de Proyecto</label>
+                            {{ form.name_project }}
+                        </div>
+                        <div class="mb-3 col-12">
+                            <label for="id_resume_project">Descripcion</label>
+                            {{ form.resume_project }}
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="id_url_repo">Url Repositorio</label>
+                            {{ form.url_repo }}
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="id_year_production">Año en Producción</label>
+                            {{ form.year_production }}
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="id_developing">Aún en desarrollo</label>
+                            {{ form.developing }}
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar Proyecto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<section class="container mt-3">
+    <div class="row">
+        {% for item in object_list %}
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name_project }}: {{ item.year_production }}</h5>
+                    <p class="card-text">{{ item.resume_project }}</p>
+                    <a href="{{ item.url_repo }}" class="btn btn-primary">Url Repositorio</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">
+                        {{ item.stack }}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">Aún no has registrado tu proyectos desarrollados. Empecemos!!</p>
+        {% endfor %}
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Agregar Proyecto
+    </button>
+</section>
+{% endblock %}

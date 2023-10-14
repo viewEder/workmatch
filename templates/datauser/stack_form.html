@@ -1,0 +1,19 @@
+<form method="post">
+    {% csrf_token %}
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tecnología</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3 col-12">
+                <label for="id_name_stack">Ingrese la tecnología</label>
+                <input type="text" name="name_stack" id="name_stack" class="form-control">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success">Guardar Stack</button>
+        </div>
+    </div>
+</form>

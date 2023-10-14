@@ -21,7 +21,6 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
-<<<<<<< HEAD
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Acerca de mi</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experiencia</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Educacion </a></li>
@@ -29,14 +28,6 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Intereses</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Logros</a></li>
             <li><a href="{% url 'login' %}" class="nav-item text-warning"><i class="bx bx-power-off"></i> Cerrar Sesións</a></li>
-=======
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
->>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905
         </ul>
     </div>
 </nav>
@@ -51,7 +42,6 @@
             {{ request.user.addres }} · {{ request.user.city }} {{ request.user.country }} · {{ request.user.phone }} ·
             <a href="mailto:{{ request.user.email }}">{{ request.user.email }}</a>
         </div>
-<<<<<<< HEAD
 
         <div class="social-icons">
             {% for item in links %} 
@@ -262,21 +252,4 @@
 
     </div>
   </section>
-  
-
-
-         
-        
-        
-=======
-        <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-        <div class="social-icons">
-            <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
-            <a class="social-icon" href="#!"><i class="fab fa-github"></i></a>
-            <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-            <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
-        </div>
->>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905
-    </div>
-</section>
 {% endblock %}

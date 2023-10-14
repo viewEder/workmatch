@@ -7,49 +7,6 @@
 {% endblock %}
 {% block contenido %}
     {% include 'core/menu.html' %}
-<<<<<<< HEAD
-    <section class="container mt-3">
-        <h1 class="h3 text-center mt-3 mb-3">Agregar estudios</h1>
-        <form method="post" class="row">
-            <div class="mb-3 col-6">
-                <label for="id_type_degree">Tipo de Educación</label>
-                {{ form.type_degree }}
-            </div>
-            <div class="mb-3 col-6">
-                <label for="id_academy_name">Institución Educativa</label>
-                {{ form.academy_name }}
-            </div>
-            <div class="mb-3 col-12">
-                <label for="id_degree_obtained">Grado Obtenido</label>
-                {{ form.degree_obtained }}
-            </div>
-            <div class="mb-3 col-12">
-                <label for="id_degree_esp">Especialidad del Grado</label>
-                {{ form.degree_esp }}
-            </div>
-            <div class="mb-3 col-6">
-                <label for="id_start_date">Fecha de Inicio de Estudios</label>
-                {{ form.start_date }}
-            </div>
-            <div class="mb-3 col-6">
-                <label for="id_finish_date">Fecha de Graduación</label>
-                {{ form.finish_date }}
-            </div>
-            <div class="mb-3 col-6">
-                <label for="id_in_progress">Aún estudio aquí</label>
-                {{ form.in_progress }}
-            </div>
-            <div class="row justify-content-end">
-                <div class="col-3">
-                    <a href="{% url 'perfil-edit' %}" class="btn btn-outline-dark">Cancelar</a>              
-                </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-success">Actualizar Datos</button>
-                </div>
-            </div>
-        </form>
-    </section>
-=======
    
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -105,27 +62,25 @@
    
     <section class="container mt-3">
         <div class="row">
-            <div class="card-group"></div>
-                {% for item in object_list %}
-                    <div class="card border-success mb-3 col-3" >
-                        <div class="card-header bg-transparent border-success">{{item.type_degree}} &nbsp;<a href="" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a></div>
-                        <div class="card-body text-success">
-                        <h5 class="card-title">{{ item.academy_name }}</h5>
-                        <p class="card-text">{{ item.degree_obtained }} - {{ item.degree_esp }}</p>
-                        </div>
-                        <div class="card-footer bg-transparent text-center border-success">Graduado desde {{ item.finish_date|date:"Y" }} </div>
+            {% for item in object_list %}
+            <div class="card-group">
+                <div class="card border-success mb-3 col-3" >
+                    <div class="card-header bg-transparent border-success">{{item.type_degree}} &nbsp;<a href="" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="card-body text-success">
+                    <h5 class="card-title">{{ item.academy_name }}</h5>
+                    <p class="card-text">{{ item.degree_obtained }} - {{ item.degree_esp }}</p>
                     </div>
-                {% empty %}
-                    <p class="text-center">Aún no has registrado tus estudiós. Empecemos!!</p>
-                {% endfor %}
+                    <div class="card-footer bg-transparent text-center border-success">Graduado desde {{ item.finish_date|date:"Y" }} </div>
+                </div>
             </div>
-             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Agregar Estudios
-            </button>
-
+            {% empty %}
+                <p class="text-center">Aún no has registrado tus estudiós. Empecemos!!</p>
+            {% endfor %}
         </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar Estudios
+        </button>
     </section>
 
->>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905
 {% endblock %}

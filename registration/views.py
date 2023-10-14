@@ -195,8 +195,4 @@ class ProfileUserUpdate(UpdateView):
     # Métodos:
     def get_object(self):
         profile, created = User.objects.get_or_create(id = self.request.user.id) # QuerySet de usuario: Select * from user where id = request.user.id
-<<<<<<< HEAD
         return profile
-=======
-        return profile
->>>>>>> 3e49c2810146763acfaf5a27b52d3e270546a905
