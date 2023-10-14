@@ -1,8 +1,9 @@
 {% extends 'core/base.html' %}
-{% block titulo %}{{ request.user.first_name }}'s Portfolio{% endblock %}
+{% block titulo %}Usuarios Registrados{% endblock %}
 {% load static %}
 
 {% block contenido %}
+{% include 'core/menu.html' %}
     <section class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -31,35 +32,35 @@
                         {% endif %}
                       </ul>
                     </nav>
-                    {% else %}
-                      <span class="text-danger">Aquí va el paginador</span>
                     {% endif %}
                 </div>
               </div>
             </div>
             
             {% for item in user_list %}
-            <div class="card mb-3 col-4">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    {% if item.photo %}
-                      <img src="{{ item.photo.url }}" class="img-fluid" alt="Foto de usuario">
-                    {% else %}
-                      <img src="{% static 'media/img/user-default.png' %}" alt="Foto usuario por defecto" class="img-fluid rounded-circle col-6">
-                    {% endif %}    
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h4 class="card-title text-primary"><a href="{% url 'usuario_view' item.username %}" data-toggle="tooltip" data-placement="top" title="Ver un poco de {{item.first_name}}">{{ item.first_name }} {{ item.last_name }}</a></h4>
-                      <h5 class="card-title text-info">{{ item.ocupation_job }} </h5>
-                      {% if request.user.is_authenticated %}
-                        <p class="card-text"> <a href="" class="linkedin">Conocer más de este usuario...</a></p>
-                      {% endif %}
-                      <p class="card-text"><small class="text-muted">Registrado desde: {{ item.date_joined|date:"Y-m" }}</small></p>
+              {% if not item.is_superuser %}
+                <div class="card mb-3 col-4">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        {% if item.photo %}
+                          <img src="{{ item.photo.url }}" class="img-fluid" alt="Foto de usuario">
+                        {% else %}
+                          <img src="{% static 'media/img/user-default.png' %}" alt="Foto usuario por defecto" class="img-fluid rounded-circle col-6">
+                        {% endif %}    
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h4 class="card-title text-primary"><a href="{% url 'usuario_view' item.username %}" data-toggle="tooltip" data-placement="top" title="Ver un poco de {{item.first_name}}">{{ item.first_name }} {{ item.last_name }}</a></h4>
+                          <h5 class="card-title text-info">{{ item.ocupation_job }} </h5>
+                          {% if request.user.is_authenticated %}
+                            <p class="card-text"> <a href="{% url 'messenger:list' %}" class="linkedin">Chatear &nbsp;<i class="fa-solid fa-comments"></i></a></p>
+                          {% endif %}
+                          <p class="card-text"><small class="text-muted">Registrado desde: {{ item.date_joined|date:"Y-m" }}</small></p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+              {% endif %}
             {% empty %}
               <a href="{% url 'perfil' %}">No se encontró nada</a>
             {% endfor %}
