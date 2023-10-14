@@ -1,7 +1,6 @@
 from django import forms
-from .models import Academy, Skills, EmploymentHistory, ProjectDev
-from django import forms
-from .models import Academy
+from .models import Academy, Skills, EmploymentHistory, ProjectDev, Stack
+
 
 class AcademyCreateForm(forms.ModelForm):
     class Meta:
@@ -53,4 +52,12 @@ class ProjectCreateForm(forms.ModelForm):
             'url_repo': forms.TextInput(attrs={'class':'form-control', 'type':'url'}),
             'year_production': forms.NumberInput(attrs={'class':'form-control'}),
             'developing': forms.CheckboxInput(attrs={'class':'form-check-input'})
+        }
+
+class StackCreateForm(forms.ModelForm):
+    class Meta:
+        model = Stack
+        fields = ['name_stack',]
+        widgets = {
+            'name_stack': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Python, Django, MERN'})
         }
