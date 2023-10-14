@@ -44,7 +44,6 @@
 <section class="container mt-3">
     <div class="row">
         {% for item in object_list %}
-        <div class="card-group">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.skill }}</h5>
@@ -56,7 +55,6 @@
                     </small>
                 </div>
             </div>
-        </div>
         {% empty %}
         <p class="text-center">Aún no has registrado tus habilidades. Empecemos!!</p>
         {% endfor %}

@@ -153,12 +153,18 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = "perfil"
 
-LOGOUT_REDIRECT_URL = "inicio"
+# LOGOUT_REDIRECT_URL = "inicio"
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-    },
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
 }
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
