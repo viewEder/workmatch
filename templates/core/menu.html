@@ -9,10 +9,12 @@ WorkMatch
 
 {% block contenido %}
 <!-- Responsive navbar-->
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
         <a class="navbar-brand" href="#!">{{ request.user.first_name }} {{ request.user.last_name }}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" href="{% url 'perfil-edit' %}">Datos básicos</a></li>
@@ -20,11 +22,20 @@ WorkMatch
                 <li class="nav-item"><a class="nav-link" href="#!">Resúmenes</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'skills-create' %}">Habilidades</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'history-create' %}">Historia laboral</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y participaciones</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y
+                        participaciones</a></li>
                 <li class="nav-item"><a class="nav-link" href="#!">Hechos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Tecnologías</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!" data-bs-toggle="modal"
+                        data-bs-target="#tecnologias">Tecnologías</a></li>
             </ul>
         </div>
     </div>
 </nav>
+<!-- Modal -->
+<div class="modal fade" id="tecnologias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        {% include 'datauser/stack_form.html' %}
+    </div>
+</div>
 {% endblock %}
