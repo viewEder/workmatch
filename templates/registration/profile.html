@@ -27,7 +27,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Habilidades</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Intereses</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Logros</a></li>
-            <li><a href="{% url 'login' %}" class="nav-item text-warning"><i class="bx bx-power-off"></i> Cerrar Sesións</a></li>
+            <li><a href="{% url 'login' %}" class="nav-item text-warning"><i class="bx bx-power-off"></i> Cerrar sesion</a></li>
         </ul>
     </div>
 </nav>
@@ -64,8 +64,8 @@
         
             <div class="container">
     
-              <div class="section-title">
-                <h2>Acerca de Mi</h2>
+              <div class="lead mb-5">
+                <h2 class="mb-5">Acerca de Mi</h2>
                 <p>
                   {% for item in excerp %}
                     {% if item.excerption_type == 1 %}
@@ -73,75 +73,41 @@
                     {% endif %}
                   {% endfor %}
                 </p>
-              </div>
-    
-              <div class="row">
-                <div class="col-lg-4" data-aos="fade-right">
-                  {% if request.user.photo %}
-                    <img src="{{ request.user.photo.url }}" alt="Foto de perfil" class="img-fluid">
-                  {% else %}
-                    <img src="{% static 'media/img/user-default.png' %}" alt="Foto usario por defecto" class="img-fluid">
-                  {% endif %}
-                </div>
-                <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                  <h3>{{ request.user.ocupation_job }}</h3>
-                  <p class="fst-italic">
-                    {% for item in excerp %}
-                      {% if item.excerption_type == 2 %}
-                        {{ item.content|safe }}
-                      {% endif %}
-                    {% endfor %}
-                  </p>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <ul>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{ request.user.birthday }}</span></li>
-                        {% for item in links %}
-                            {% if item.type_link == 'WEBSITE' %}
-                              <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong>
-                                <a href="{{ item.link }}" target="_blank"><span>https://{{ request.user.username }}.com/</span></a>
-                            {% endif %}
-                          {% endfor %}
-                        </li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Celular:</strong> <span>{{ request.user.phone }}</span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Ciudad:</strong> <span class="text-capitalize">{{ request.user.city }} {{request.user.country }}</span></li>
-                      </ul>
-                    </div>
-                    <div class="col-lg-6">
-                      <ul>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Adad:</strong>{{ edad }}<span></span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Id:</strong> <span>{{ request.user.identification }}</span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>{{ request.user.email }}</span></li>
-                        <li><i class="bi bi-chevron-right"></i> <strong>Desplazamiento:</strong> <span>{{ request.user.relocate }}</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+                <p >
+                  {% for item in excerp %}
+                    {% if item.excerption_type == 2 %}
+                      {{ item.content|safe }}
+                    {% endif %}
+                  {% endfor %}
+                </p>
+              </div>            
             </div>
           </section>
 
 <!-- ======= Experiencia ======= --> 
-        <section id="experiencia" class="experiencia">
-            <div class="container">
+        <section class="resume-section" id="experience">
+          <div class="resume-section-content">
 
-                <h2>Experiencia</h2>
+            <h2 class="mb-5">Experiencia</h2>
                     
-                <div class="row">
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     
-                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="lead mb-5">
                     {% for job in empleos %}
-                    <div class="resume-item">
-                        <h4>{{ job.position }}</h4>
-                        <p>{{ job.job_description|safe }}</p>
-                        <h5>{{ job.start_date| date:"Y" }} -
-                            {% if job.end_date %} 
-                                {{ job.end_date| date:"Y" }}
-                            {% else %}
-                                Actualmente en la empresa
-                            {% endif %}
-                        </h5>
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">{{ job.position }}</h4>
+                        <p>{{ job.job_description|safe }}</p>   
                     </div>
+                    <div class="flex-shrink-0"><span class="text-primary">
+                      <h5>{{ job.start_date| date:"Y" }} -
+                         {% if job.end_date %} 
+                              {{ job.end_date| date:"Y" }}
+                          {% else %}
+                             Actualmente en la empresa
+                          {% endif %}
+                      </h5>
+                    </span></div>
                     {% empty %}
                         <h4>Sin Experiencia</h4>
                         <p>Estaré encantado de iniciar mi experiencia en su empresa.</p>
@@ -153,20 +119,20 @@
         </section>
 
 <!-- ======= Educacion ======= --> 
-        <section id="educacion" class="eduacion">
-            <div class="container">
-            <h2>Educacion</h2>
+        <section class="resume-section" id="education">
+            <div class="resume-section-content">
+            <h2 class="mb-5">Educacion</h2>
             {% for school in academia|dictsortreversed:"id" %}
             
-            <div class="resume-item">
+            <div class="lead mb-5">
               <h4>{{ school.degree_obtained }}</h4>
-              <h5>{{ school.start_date|date:"Y" }} - 
+              <h5><span class="text-primary">{{ school.start_date|date:"Y" }} - 
                 {% if school.in_progress %}
                   Actualmente estudiando
                 {% else %}
                   {{ school.finish_date|date:"Y" }}
                 {% endif %}
-              </h5>
+              </h5></span>
               <p><em>{{ school.academy_name }}</em></p>
               <p>{{ school.degree_esp }}</p>
             </div>
@@ -176,14 +142,14 @@
         </section>
        
  <!-- ======= Skills Section ======= -->        
-          <section id="skills" class="skills section-bg">
-            <div class="container">
+        <section class="resume-section" id="skills">
+            <div class="resume-section-content">
       
-              <div class="section-title">
-                <h2>Habilidades</h2>
+              <div class="lead mb-5">
+                <h2 class="mb-5">Habilidades</h2>
                 {% for item in excerp %}
                   {% if item.excerption_type == 3 %}
-                    <p>{{ item.content|safe }}</p>
+                    <p class="lead mb-5">{{ item.content|safe }}</p>
                   {% endif %}
                 {% endfor %}
               </div>
@@ -204,39 +170,39 @@
           </section>
 
  <!-- ======= Intereses  ======= --> 
-            <section id="skills" class="skills section-bg">
-                <div class="container">
+        <section class="resume-section" id="interests">
+            <div class="resume-section-content">
+              <div class="lead mb-5">
                 <h2>Intereses</h2>
-        
-                </div>
-            </section>
+              </div>       
+            </div>
+        </section>
 
   <!-- ======= logros ======= --> 
-            <section id="logros" class="logors">
-                <div class="container">
-
-                    <div class="section-title">
-                        <h2>Logros</h2>
-                            {% for item in excerp %}
-                                {% if item.excerption_type == 5 %}
-                                    <p>{{ item.content|safe }}</p>
-                                {% endif %}
-                            {% endfor %}
-                    </div>
+        <section class="resume-section" id="awards">
+          <div class="resume-section-content">
+              <div class="lead mb-5">
+                <h2 class="mb-5">Logros</h2>
+                {% for item in excerp %}
+                  {% if item.excerption_type == 5 %}
+                    <p class="mb-0">{{ item.content|safe }}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
 
                     <div class="row">
                         {% for project in proyectos %}
                             <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
                                 <div class="icon"><i class="bi bi-briefcase"></i></div>
-                                <h4 class="title"><a href="">{{ project.name_project }}</a></h4>
-                                <h5 class="title">
+                                <h4 class="lead mb-5"><a href="">{{ project.name_project }}</a></h4>
+                                <h5 class="lead mb-5">
                                     {% if project.year_production %} 
                                         {{ project.year_production }}
                                     {% else %}
                                         Actualmente en Desarrollo
                                     {% endif %}
                                 </h5>
-                                <p class="description">
+                                <p class="lead mb-5">
                                     {{ project.resume_project }} <br>
                                     <span><small><a href="{{ project.url_repo }}" target="_blank">http://repositorio.com/</a></small></span>
                                 </p>
@@ -250,6 +216,6 @@
                         {% endfor %}
                 </div>
 
-    </div>
+          </div>
   </section>
 {% endblock %}
