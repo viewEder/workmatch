@@ -13,6 +13,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form method="post">
+                {% csrf_token %}
                 <div class="modal-header">
                     <h1 class="modal-title fs-5 h3" id="exampleModalLabel">Agregar historia laboral</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -31,8 +32,8 @@
                             <label for="id_position">Cargo</label>
                             {{ form.position }}
                         </div>
-                        <div class="mb-3 col-12">
-                            <label for="id_job_description">Funciones Desempeñadas</label>
+                        <div class="mb-3 col-12 text-center">
+                            <label for="id_job_description">Funciones Desempeñadas</label><br>
                             {{ form.job_description }}
                         </div>
                         <div class="mb-3 col-6">
@@ -60,7 +61,7 @@
 
 <section class="container mt-3">
     <div class="row">
-        {% for item in object_list %}
+        {% for item in EmploymentHistory %}
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.company }}: {{ item.start_date }} - {{ item.end_date }}</h5>

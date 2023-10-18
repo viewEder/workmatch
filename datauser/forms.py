@@ -1,5 +1,5 @@
 from django import forms
-from .models import Academy, Skills, EmploymentHistory, ProjectDev, Stack
+from .models import Academy, Skills, EmploymentHistory, ProjectDev, Stack, Facts
 
 
 class AcademyCreateForm(forms.ModelForm):
@@ -60,4 +60,13 @@ class StackCreateForm(forms.ModelForm):
         fields = ['name_stack',]
         widgets = {
             'name_stack': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Python, Django, MERN'})
+        }
+
+class FactsCreateForm(forms.ModelForm):
+    class Meta:
+        model = Facts
+        fields = ['fact','value']
+        widgets = {
+            'fact': forms.Select(attrs={'class':'form-select'}),
+            'value': forms.NumberInput(attrs={'class':'form-control'})
         }
