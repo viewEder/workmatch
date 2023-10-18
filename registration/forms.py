@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Excerp
 
 
 class SingUpUserFormWithEmail(UserCreationForm):
@@ -35,4 +35,14 @@ class ProfileUserForm(forms.ModelForm):
             'birthday':  forms.DateInput(attrs={'class': 'form-control'}),
             'ocupation_job': forms.TextInput(attrs={'class': 'form-control'}),
             'relocate': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        }
+
+class ExcerpCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Excerp
+        fields = ['excerption_type', 'content']
+        widgets = {
+            'excerption_type':  forms.Select(attrs={'class': 'form-select'}),
+            'content':  forms.Textarea(attrs={'class':'form-control', 'rows':'3'})
         }

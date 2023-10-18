@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 # vistas basadas en clases:
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 
@@ -15,7 +16,7 @@ from .models import User, Links, Excerp
 from datauser.models import Academy, ProjectDev, Skills, EmploymentHistory, HobbiesExtras, Facts
 
 # Formularios propios:
-from .forms import SingUpUserFormWithEmail, ProfileUserForm
+from .forms import SingUpUserFormWithEmail, ProfileUserForm, ExcerpCreateForm
 
 from django.urls import reverse_lazy
 from django import forms
@@ -196,3 +197,20 @@ class ProfileUserUpdate(UpdateView):
     def get_object(self):
         profile, created = User.objects.get_or_create(id = self.request.user.id) # QuerySet de usuario: Select * from user where id = request.user.id
         return profile
+
+
+@method_decorator(login_required, name='dispatch')
+class ExcerpCreateView(CreateView, ListView):
+    success_url = reverse_lazy('perfil-edit')
+    template_name = 'registration/excerp_form.html'
+    form_class = ExcerpCreateForm
+    model = Excerp
+
+    def form_valid(self, form):
+        """ Cuando el formulario se envía, el campo foreign key USER lo tomará del usuario logueado """
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_queryset(self):
+        """ Método para filtrar los datos del usuario que se encuentra logueado """
+        return super().get_queryset()

@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block contenido %}
+    {% include 'core/menu.html' %}
+   
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form method="post">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 h3" id="exampleModalLabel">Agregar Hechos</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <section class="container mt-3 row">          
+                        {% csrf_token %}
+                        <div class="mb-3 col-6">
+                            <label for="id_fact">Hecho</label>
+                            {{ form.fact }}
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="id_value">Cantidad</label>
+                            {{ form.value }}
+                        </div>
+                </section>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-success">Guardar Hecho</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+   
+    <section class="container mt-3">
+        <div class="row">
+            <div class="card-group">
+            {% for item in object_list %}
+                <div class="card mb-3 col-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.fact }}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">
+                            Cantidad: {{ item.value }}
+                        </small>
+                    </div>
+                </div>
+            {% empty %}
+            <p class="text-center">Aún no has registrado tus hechos. Empecemos!!</p>
+            {% endfor %}
+        </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar Hecho
+        </button>
+    </section>
+
+{% endblock %}
