@@ -73,8 +73,9 @@ class HistoryCreateView(CreateView, ListView):
     
     def get_queryset(self):
         """ Método para filtrar los datos del usuario que se encuentra logueado """
-        return super().get_queryset().filter(user = self.request.user.id)
-
+        queryset = EmploymentHistory.objects.filter(user = self.request.user.id)
+        #return super().get_queryset().filter(user = self.request.user.id)
+        return queryset
 @method_decorator(login_required, name='dispatch')
 class ProjectCreateView(CreateView, ListView):
     success_url = reverse_lazy('perfil-edit')
@@ -89,6 +90,7 @@ class ProjectCreateView(CreateView, ListView):
     
     def get_queryset(self):
         """ Método para filtrar los datos del usuario que se encuentra logueado """
+        
         return super().get_queryset().filter(user = self.request.user.id)
 
 @method_decorator(login_required, name='dispatch')

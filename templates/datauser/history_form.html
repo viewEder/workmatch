@@ -61,16 +61,25 @@
 
 <section class="container mt-3">
     <div class="row">
-        {% for item in EmploymentHistory %}
-            <div class="card">
+        <div class="col-12">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Agregar Historia Laboral
+            </button>
+        </div>
+        {% for item in object_list %}
+            <div class="card col-6 mt-1">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.company }}: {{ item.start_date }} - {{ item.end_date }}</h5>
                     <p class="card-text">{{ item.position }}</p>
-                    <p class="card-text">{{ item.job_description }}</p>
+                    <p class="card-text">{{ item.job_description|safe }}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-body-secondary">
-                        {{ item.stack }}
+                        <b>Stacks:</b>
+                        {% for stack in item.stack.get_queryset %}
+                            {{ stack.name_stack }}
+                        {% endfor %}
                     </small>
                 </div>
             </div>
@@ -78,9 +87,6 @@
             <p class="text-center">Aún no has registrado tu historia laboral. Empecemos!!</p>
         {% endfor %}
     </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar Historia Laboral
-    </button>
+    
 </section>
 {% endblock %}

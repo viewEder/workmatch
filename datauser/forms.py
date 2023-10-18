@@ -32,7 +32,7 @@ class HistoryCreateForm(forms.ModelForm):
         model = EmploymentHistory
         fields = ['stack','company','position','job_description','start_date','end_date','still_work']
         widgets = {
-            'stack': forms.Select(attrs={'class':'form-select'}),
+            'stack': forms.SelectMultiple(attrs={'class':'form-select'}),
             'company': forms.TextInput(attrs={'class':'form-control'}),
             'position': forms.TextInput(attrs={'class':'form-control'}),
             'job_description': forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
