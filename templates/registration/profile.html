@@ -42,81 +42,62 @@
             {{ request.user.addres }} · {{ request.user.city }} {{ request.user.country }} · {{ request.user.phone }} ·
             <a href="mailto:{{ request.user.email }}">{{ request.user.email }}</a>
         </div>
-
+        <p class="lead mb-5">
+          {% for item in excerp %}
+                  {% if item.excerption_type == 1 %}
+                    {{ item.content|safe }}
+                  {% endif %}
+          {% endfor %}             
+        </p>
         <div class="social-icons">
             {% for item in links %} 
-              <a href="{{ item.link }}" target="_blank" class="linkedin">
+              <a href="{{ item.link }}" target="_blank" class="social-icon">
                   {% if item.type_link == 'LI' %}
-                    <i class="bx bxl-linkedin"></i>
+                    <i class="fab fa-linkedin-in"></i>
                   {% elif item.type_link == 'GH' %}
-                    <i class="bx bxl-github"></i>
+                    <i class="fab fa-github"></i>
                   {% elif item.type_link == 'WEBSITE' %}
-                    <i class="bx bxl-link"></i>
+                    <i class="fa-solid fa-link"></i>
                   {% elif item.type_link == 'OTHERS' %}
-                    <i class="bx bxl-globe"></i>
+                    <i class="fab fa-globe"></i>
                   {% endif %}
               </a>
             {% endfor %}
-
         </div>
-<!-- ======= About Section ======= -->
-        <section id="about" class="about">
-        
-            <div class="container">
-    
-              <div class="lead mb-5">
-                <h2 class="mb-5">Acerca de Mi</h2>
-                <p>
-                  {% for item in excerp %}
-                    {% if item.excerption_type == 1 %}
-                      {{ item.content|safe }}
-                    {% endif %}
-                  {% endfor %}
-                </p>
-
-                <p >
-                  {% for item in excerp %}
-                    {% if item.excerption_type == 2 %}
-                      {{ item.content|safe }}
-                    {% endif %}
-                  {% endfor %}
-                </p>
-              </div>            
-            </div>
-          </section>
-
+      </div>
+</section>
+<hr class="m-0" />
 <!-- ======= Experiencia ======= --> 
-        <section class="resume-section" id="experience">
-          <div class="resume-section-content">
-
-            <h2 class="mb-5">Experiencia</h2>
-                    
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    
-                  <div class="lead mb-5">
-                    {% for job in empleos %}
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">{{ job.position }}</h4>
-                        <p>{{ job.job_description|safe }}</p>   
-                    </div>
-                    <div class="flex-shrink-0"><span class="text-primary">
-                      <h5>{{ job.start_date| date:"Y" }} -
-                         {% if job.end_date %} 
-                              {{ job.end_date| date:"Y" }}
-                          {% else %}
-                             Actualmente en la empresa
-                          {% endif %}
-                      </h5>
-                    </span></div>
-                    {% empty %}
-                        <h4>Sin Experiencia</h4>
-                        <p>Estaré encantado de iniciar mi experiencia en su empresa.</p>
-                    {% endfor %}
-                </div>
-            </div>
-
-               </div>
-        </section>
+<section class="resume-section" id="experience">
+  <div class="resume-section-content">
+    <h2 class="mb-5">Experiencia</h2>
+    {% for job in empleos %}
+    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+      <div class="flex-grow-1">
+          <h3 class="mb-0">{{ job.position }}</h3>
+          <div class="subheading mb-3">{{ job.company }}</div>
+          <p>{{ job.job_description|safe }}</p> 
+      </div>
+      <div class="flex-shrink-0"><span class="text-primary">
+        {{ job.start_date| date:"Y" }} - 
+        {% if job.end_date %} 
+          {{ job.end_date| date:"Y" }}
+        {% else %}
+          Actualmente
+        {% endif %}</span></div>
+    </div>
+    {% empty %}
+      <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="flex-grow-1">
+            <h3 class="mb-0">Senior Web Developer</h3>
+            <div class="subheading mb-3">Intelitec Solutions</div>
+            <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+        </div>
+        <div class="flex-shrink-0"><span class="text-primary">March 2013 - Present</span></div>
+      </div>
+    {% endfor %}    
+  </div>
+</section>
 
 <!-- ======= Educacion ======= --> 
         <section class="resume-section" id="education">
