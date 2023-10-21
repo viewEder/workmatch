@@ -1,0 +1,109 @@
+#timeline-container {
+    /* background: white url(../media/img/backgrounds/history_form.png) center fixed no-repeat;
+    background-size: contain; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#timeline {
+    content: '';
+    position: absolute;
+    background: gray;
+    width: 1px;
+    left: 50%;
+}
+
+.child{
+    position: relative;
+    margin: 20px;
+    opacity: 0;
+}
+
+/* a la izquierda */
+.child:nth-child(odd) {
+    float: left;
+    border-radius: 0px 20px 20px 20px;
+    text-align: right;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.child:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    background: gray;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    left: -30px;
+}
+
+.child:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    background: gray;
+    width: 10px;
+    height: 2px;
+    left: -10px;
+    top: 10px;
+}
+
+/* a la derecha */
+.child:nth-child(even) {
+    float: right;
+    border-radius: 20px 0px 20px 20px;
+    text-align: right;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.child:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    background: gray;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    right: -30px;
+}
+
+.child:nth-child(even)::after {
+    content: '';
+    position: absolute;
+    background: gray;
+    width: 10px;
+    height: 2px;
+    right: -10px;
+    top: 10px;
+}
+
+.content {
+    width: 300px;
+    padding: 15px;
+    color: black;
+    /* background: rgb(0, 0, 0, 0.2); */
+}
+
+/* Animación */
+._show {
+    opacity: 1;
+    animation: __show 1s cubic-bezier(.99,-.7,.2,1.9);
+}
+
+._hide {
+    opacity: 0;
+    animation: __hide 1s cubic-bezier(.99,-.7,.2,1.9);
+}
+
+@keyframes __show {
+    0% {transform: translateY(500px); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
+}
+
+@keyframes __hide {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(500px); opacity: 0;}
+}

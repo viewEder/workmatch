@@ -46,7 +46,7 @@ class ProjectCreateForm(forms.ModelForm):
         model = ProjectDev
         fields = ['stack','name_project','resume_project','url_repo','year_production','developing']
         widgets = {
-            'stack': forms.Select(attrs={'class':'form-select'}),
+            'stack': forms.SelectMultiple(attrs={'class':'form-select'}),
             'name_project': forms.TextInput(attrs={'class':'form-control'}),
             'resume_project': forms.Textarea(attrs={'class':'form-control', 'rows':'3'}),
             'url_repo': forms.TextInput(attrs={'class':'form-control', 'type':'url'}),
