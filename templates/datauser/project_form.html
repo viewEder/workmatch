@@ -57,6 +57,12 @@
 
 <section class="container mt-3">
     <div class="row">
+        <div class="col-12">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Agregar Proyecto
+            </button>
+        </div>
         {% for item in object_list %}
             <div class="card">
                 <div class="card-body">
@@ -74,9 +80,5 @@
         <p class="text-center">Aún no has registrado tu proyectos desarrollados. Empecemos!!</p>
         {% endfor %}
     </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar Proyecto
-    </button>
 </section>
 {% endblock %}
