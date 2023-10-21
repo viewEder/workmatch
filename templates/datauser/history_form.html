@@ -72,7 +72,12 @@
     {% for item in object_list %}
         <div class="child">
             <div class="content">
-                <h4>{{ item.start_date }} - {{ item.end_date }}</h4>
+                <h4>{{ item.start_date| date:"Y" }} - 
+                    {% if item.end_date %} 
+                        {{ item.end_date| date:"Y" }}
+                    {% else %}
+                        Actualmente
+                     {% endif %}</h4>
                 <p>{{ item.company }} - {{ item.position }}</p>
                 <p>{{ item.job_description|safe }}</p>
             </div>

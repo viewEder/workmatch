@@ -98,29 +98,30 @@
     {% endfor %}    
   </div>
 </section>
-
+<hr class="m-0" />
 <!-- ======= Educacion ======= --> 
-        <section class="resume-section" id="education">
-            <div class="resume-section-content">
-            <h2 class="mb-5">Educacion</h2>
-            {% for school in academia|dictsortreversed:"id" %}
-            
-            <div class="lead mb-5">
-              <h4>{{ school.degree_obtained }}</h4>
-              <h5><span class="text-primary">{{ school.start_date|date:"Y" }} - 
-                {% if school.in_progress %}
-                  Actualmente estudiando
-                {% else %}
-                  {{ school.finish_date|date:"Y" }}
-                {% endif %}
-              </h5></span>
-              <p><em>{{ school.academy_name }}</em></p>
-              <p>{{ school.degree_esp }}</p>
-            </div>
-            {% endfor %}
-                 
-            </div>
-        </section>
+<section class="resume-section" id="education">
+  <div class="resume-section-content">
+    <h2 class="mb-5">Educacion</h2>
+    {% for school in academia|dictsortreversed:"id" %}
+      <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="flex-grow-1">
+            <h3 class="mb-0">{{ school.academy_name }}</h3>
+            <div class="subheading mb-3">{{ school.degree_obtained }}</div>
+            <div>{{ school.degree_esp }}</div>
+        </div>
+        <div class="flex-shrink-0"><span class="text-primary">
+          {{ school.start_date|date:"Y" }} -  
+          {% if school.in_progress %}
+            Actualmente estudiando
+          {% else %}
+            {{ school.finish_date|date:"Y" }}
+          {% endif %}
+        </span></div>
+      </div>
+    {% endfor %} 
+  </div>
+</section>
        
  <!-- ======= Skills Section ======= -->        
         <section class="resume-section" id="skills">
