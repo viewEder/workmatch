@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block estilo %}
-
+<link rel="stylesheet" href="{% static 'css/timeline.css' %}">
 {% endblock %}
 {% block contenido %}
 {% include 'core/menu.html' %}
@@ -59,7 +59,7 @@
     </div>
 </div>
 
-<section class="container mt-3">
+<section id="timeline-container" class="container mt-3">
     <div class="row">
         <div class="col-12">
             <!-- Button trigger modal -->
@@ -67,26 +67,23 @@
                 Agregar Historia Laboral
             </button>
         </div>
-        {% for item in object_list %}
-            <div class="card col-6 mt-1">
-                <div class="card-body">
-                    <h5 class="card-title">{{ item.company }}: {{ item.start_date }} - {{ item.end_date }}</h5>
-                    <p class="card-text">{{ item.position }}</p>
-                    <p class="card-text">{{ item.job_description|safe }}</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">
-                        <b>Stacks:</b>
-                        {% for stack in item.stack.get_queryset %}
-                            {{ stack.name_stack }}
-                        {% endfor %}
-                    </small>
-                </div>
-            </div>
-        {% empty %}
-            <p class="text-center">Aún no has registrado tu historia laboral. Empecemos!!</p>
-        {% endfor %}
     </div>
-    
+    <div id="timeline">
+    {% for item in object_list %}
+        <div class="child">
+            <div class="content">
+                <h4>{{ item.start_date| date:"Y" }} - 
+                    {% if item.end_date %} 
+                        {{ item.end_date| date:"Y" }}
+                    {% else %}
+                        Actualmente
+                     {% endif %}</h4>
+                <p>{{ item.company }} - {{ item.position }}</p>
+                <p>{{ item.job_description|safe }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </section>
+<script src="{% static 'js/timeline.js' %}"></script>
 {% endblock %}
