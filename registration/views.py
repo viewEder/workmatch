@@ -213,4 +213,4 @@ class ExcerpCreateView(CreateView, ListView):
 
     def get_queryset(self):
         """ Método para filtrar los datos del usuario que se encuentra logueado """
-        return super().get_queryset()
+        return super().get_queryset().filter(user = self.request.user.id)

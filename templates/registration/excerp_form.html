@@ -40,6 +40,10 @@
     </div>
    
     <section class="container mt-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar Resumen
+        </button>
         <div class="row">            
             {% for item in object_list|dictsortreversed:"pk" %}
                 <div class="card border-primary mb-3 col-6">
@@ -52,11 +56,7 @@
             {% empty %}
             <p class="text-center">Aún no has registrado tus resúmenes. Empecemos!!</p>
             {% endfor %}
-        </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Agregar Resumen
-        </button>
+        </div>        
     </section>
 
 {% endblock %}

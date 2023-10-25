@@ -72,7 +72,9 @@
                 </div>
                 <div class="card-footer">
                     <small class="text-body-secondary">
-                        {{ item.stack }}
+                        {% for stack in item.stack.all %}
+                        {{ stack.name_stack }} - 
+                        {% endfor %}
                     </small>
                 </div>
             </div>

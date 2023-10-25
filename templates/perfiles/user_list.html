@@ -53,7 +53,7 @@
                           <h4 class="card-title text-primary"><a href="{% url 'usuario_view' item.username %}" data-toggle="tooltip" data-placement="top" title="Ver un poco de {{item.first_name}}">{{ item.first_name }} {{ item.last_name }}</a></h4>
                           <h5 class="card-title text-info">{{ item.ocupation_job }} </h5>
                           {% if request.user.is_authenticated %}
-                            <p class="card-text"> <a href="{% url 'messenger:list' %}" class="linkedin">Chatear &nbsp;<i class="fa-solid fa-comments"></i></a></p>
+                            <p class="card-text"> <a href="{% url 'messenger:start' item.username %}" class="linkedin">Chatear &nbsp;<i class="fa-solid fa-comments"></i></a></p>
                           {% endif %}
                           <p class="card-text"><small class="text-muted">Registrado desde: {{ item.date_joined|date:"Y-m" }}</small></p>
                         </div>

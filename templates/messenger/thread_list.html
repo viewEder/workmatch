@@ -1,8 +1,55 @@
 {% extends 'core/base.html' %}
 {% block titulo %}Usuarios Registrados{% endblock %}
 {% load static %}
-
 {% block contenido %}
 {% include 'core/menu.html' %}
-    Lista de mensajes
+<style>
+    .img-user {
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-right: 10px;
+}
+</style>
+    <main role="main"> 
+        <section class="container">
+            <div class="row">
+                <div class="col-md-9 mx-auto mb-5">
+                    <div class="row">
+                        <!-- Hilos de conversación -->
+                        <div class="col-md-4">
+                            <!-- Recorremos los hilos (thread) y mostramos los que tienen al menos 1 mensaje -->
+                            {% for thread in request.user.threads.all %}
+                                {% if thread.messages.all|length > 0 %}
+                                    <div class="mb-3">
+                                        <!-- Recorremos todos los miembros del hilo -->
+                                        {% for user in thread.user.all %}
+                                            {% if user != request.user %}
+                                                {% if user.photo %}
+                                                    <!-- Mostrar avatar de usuario -->
+                                                    <img class="img-user" src="{{ user.photo.url }}" alt="">
+                                                {% else %}
+                                                    <img class="img-user" src="{% static 'media/img/default-user.png' %}" alt="..." />
+                                                {% endif %}
+                                                <!-- Mostramos la info del usuario y el mensaje -->
+                                                <div>
+                                                    <a href="{% url 'messenger:detail' thread.pk %}">{{ user }}</a>
+                                                    <small><em>Hace:</em><b>{{ thread.messages.last.created| timesince }}</b></small>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-8">
+                            <span><i>
+                                Selecciona una conversación del panel izquierdo
+                            </i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 {% endblock %}
