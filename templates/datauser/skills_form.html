@@ -43,6 +43,10 @@
 </div>
 
 <section class="container mt-3">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Agregar Habilidad
+    </button>
     <div class="row">
         {% for item in object_list %}
             <div class="card mb-3 col-3">
@@ -60,9 +64,5 @@
         <p class="text-center">Aún no has registrado tus habilidades. Empecemos!!</p>
         {% endfor %}
     </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Agregar Habilidad
-    </button>
 </section>
 {% endblock %}

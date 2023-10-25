@@ -1,0 +1,119 @@
+[
+  { "stack": "LAMP", "tools": ["Linux", "Apache", "MySQL", "PHP/Python/Perl"] },
+  { "stack": "MEAN", "tools": ["MongoDB", "Express.js", "Angular", "Node.js"] },
+  { "stack": "MERN", "tools": ["MongoDB", "Express.js", "React", "Node.js"] },
+  { "stack": "MEVN", "tools": ["MongoDB", "Express.js", "Vue.js", "Node.js"] },
+  { "stack": "Vite", "tools": ["Vite", "Vue.js", "Node.js"] },
+  {
+    "stack": "Ruby on Rails (RoR)",
+    "tools": [
+      "Ruby",
+      "Ruby on Rails",
+      "JavaScript (often with jQuery)",
+      "PostgreSQL/MySQL"
+    ]
+  },
+  {
+    "stack": ".NET",
+    "tools": [".NET Framework or .NET Core", "C#", "ASP.NET", "SQL Server"]
+  },
+  {
+    "stack": "Java",
+    "tools": ["Java", "Spring Framework", "Hibernate", "Apache Tomcat"]
+  },
+  {
+    "stack": "Python",
+    "tools": [
+      "Python",
+      "Django or Flask (for web development)",
+      "PostgreSQL/MySQL"
+    ]
+  },
+  {
+    "stack": "JavaScript",
+    "tools": [
+      "JavaScript (often with various frameworks and libraries)",
+      "Node.js (for server-side)",
+      "NoSQL databases like MongoDB"
+    ]
+  },
+  {
+    "stack": "Serverless",
+    "tools": ["AWS Lambda", "Amazon API Gateway", "AWS DynamoDB", "AWS S3"]
+  },
+  {
+    "stack": "JAMstack",
+    "tools": [
+      "JavaScript (client-side)",
+      "APIs (for server-side functionality)",
+      "Markup (HTML/CSS)"
+    ]
+  },
+  {
+    "stack": "Mobile App Development",
+    "tools": ["iOS: Swift/Objective-C", "Android: Java/Kotlin"]
+  },
+  {
+    "stack": "DevOps",
+    "tools": ["Docker", "Kubernetes", "Jenkins", "Ansible", "Git"]
+  },
+  {
+    "stack": "Data Science",
+    "tools": [
+      "Python",
+      "Jupyter Notebooks",
+      "NumPy, Pandas, SciPy",
+      "Machine Learning frameworks (e.g., TensorFlow, PyTorch)"
+    ]
+  },
+  {
+    "stack": "Big Data",
+    "tools": [
+      "Hadoop",
+      "Spark",
+      "Kafka",
+      "Hive",
+      "NoSQL databases (e.g., Cassandra)"
+    ]
+  },
+  {
+    "stack": "Front-End Web Development",
+    "tools": [
+      "HTML/CSS",
+      "JavaScript (often with React, Angular, or Vue.js)",
+      "Webpack or other build tools"
+    ]
+  },
+  {
+    "stack": ".NET Core",
+    "tools": [".NET Core", "C#", "ASP.NET Core", "SQL Server"]
+  },
+  { "stack": "Swift/iOS", "tools": ["Swift", "Xcode", "iOS SDK"] },
+  {
+    "stack": "Go (Golang)",
+    "tools": ["Go (Golang)", "Gorilla Mux (for routing)", "PostgreSQL/MySQL"]
+  },
+  {
+    "stack": "PHP",
+    "tools": [
+      "PHP",
+      "Laravel or Symfony (for web development)",
+      "MySQL/PostgreSQL"
+    ]
+  },
+  {
+    "stack": "Flask",
+    "tools": [
+      "Python",
+      "Flask (a micro web framework)",
+      "SQLite or other databases"
+    ]
+  },
+  {
+    "stack": "NoSQL",
+    "tools": [
+      "Various NoSQL databases (MongoDB, Cassandra, Couchbase, etc.)",
+      "Often combined with JavaScript, Node.js, or other languages"
+    ]
+  }
+]

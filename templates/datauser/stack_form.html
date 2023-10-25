@@ -1,19 +1,30 @@
-<form method="post">
-    {% csrf_token %}
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tecnología</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+<section class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            Tecnologías
         </div>
-        <div class="modal-body">
-            <div class="mb-3 col-12">
-                <label for="id_name_stack">Ingrese la tecnología</label>
-                <input type="text" name="name_stack" id="name_stack" class="form-control">
-            </div>
+        <div class="card-body">
+            <div class="btn-group-toggle" data-toggle="buttons"></div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-success">Guardar Stack</button>
+        <div class="card-footer text-end">
+            <button type="submit" class="btn btn-success">Guardar Tecnologías</button>
         </div>
     </div>
-</form>
+</section>
+<script src="{% static 'js/stacks.js' %}"></script>
+
+<script>
+  var stacks = [];
+  {% for item in object_list %}
+    stacks.push('{{ item.name_stack }}'); // Adjust this line if you need a separator
+  {% endfor %}
+</script>
+{% endblock %}
