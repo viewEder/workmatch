@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block titulo %}Registrate o ingresa{% endblock %}
+{% block titulo %}{{ request.user.first_name }}{% endblock %}
 {% load static %}
 
 {% block estilo %}
@@ -10,7 +10,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Clarence Taylor</span>
+        <span class="d-block d-lg-none">{{ request.user.username }}</span>
         {% if request.user.photo %}
             <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ request.user.photo.url }}" alt="..." /></span>
         {% else %}
@@ -27,7 +27,7 @@
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Habilidades</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Intereses</a></li>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Logros</a></li>
-            <li><a href="{% url 'login' %}" class="nav-item text-warning"><i class="bx bx-power-off"></i> Cerrar sesion</a></li>
+            <li><a href="{% url 'logout' %}" class="nav-item text-warning"><i class="bx bx-power-off"></i> Cerrar sesion</a></li>
         </ul>
     </div>
 </nav>

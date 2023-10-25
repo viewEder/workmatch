@@ -1,10 +1,5 @@
 {% extends 'core/base.html' %}
-{% block titulo %}
-WorkMatch
-{% endblock %}
 {% load static %}
-
-
 {% block contenido %}
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,17 +15,22 @@ WorkMatch
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
-                <li class="nav-item"><a class="nav-link active" href="{% url 'perfil-edit' %}">Datos básicos</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'academy-create' %}">Academia</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'excerp-create' %}">Resúmenes</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'skills-create' %}">Habilidades</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'history-create' %}">Historia laboral</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y
-                        participaciones</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'fact-create' %}">Hechos</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'stack-create' %}">Tecnologías</a></li>
-            </ul>
+            {% if request.user.is_authenticated %}
+                <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'perfil-edit' %}">Datos básicos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'academy-create' %}">Academia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'excerp-create' %}">Resúmenes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'skills-create' %}">Habilidades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'history-create' %}">Historia laboral</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y participaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'fact-create' %}">Hechos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'stack-create' %}">Tecnologías</a></li>
+                </ul>
+            {% else %}
+                <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">Ingresar</a></li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
