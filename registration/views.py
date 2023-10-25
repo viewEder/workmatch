@@ -212,6 +212,5 @@ class ExcerpCreateView(CreateView, ListView):
         return super().form_valid(form)
 
     def get_queryset(self):
-        queryset = Excerp.objects.filter(user = self.request.user.id)
-        #return super().get_queryset().filter(user = self.request.user.id)
-        return queryset
+        """ Método para filtrar los datos del usuario que se encuentra logueado """
+        return super().get_queryset().filter(user = self.request.user.id)

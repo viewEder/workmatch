@@ -40,10 +40,14 @@
     </div>
    
     <section class="container mt-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar Hecho
+        </button>
         <div class="row">
-            <div class="card-group">
+            <div class="{% if object_list %} d-flex flex-wrap card-group {% endif %}">
             {% for item in object_list %}
-                <div class="card mb-3 col-3">
+                <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ item.fact }}</h5>
                     </div>
@@ -54,14 +58,10 @@
                     </div>
                 </div>
             {% empty %}
-            <p class="text-center">Aún no has registrado tus hechos. Empecemos!!</p>
+                <p class="text-center">Aún no has registrado tus hechos. Empecemos!!</p>
             {% endfor %}
-        </div>
-        </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Agregar Hecho
-        </button>
+            </div>
+        </div>        
     </section>
 
 {% endblock %}

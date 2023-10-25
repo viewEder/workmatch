@@ -61,6 +61,10 @@
     </div>
    
     <section class="container mt-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar Estudios
+        </button>
         <div class="row">
             {% for item in object_list %}
                 <div class="card border-success mb-3 col-3" >
@@ -74,11 +78,7 @@
             {% empty %}
                 <p class="text-center">Aún no has registrado tus estudiós. Empecemos!!</p>
             {% endfor %}
-        </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Agregar Estudios
-        </button>
+        </div>        
     </section>
 
 {% endblock %}
