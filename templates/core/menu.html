@@ -3,9 +3,7 @@
 WorkMatch
 {% endblock %}
 {% load static %}
-{% block estilo %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+
 
 {% block contenido %}
 <!-- Responsive navbar-->
@@ -31,17 +29,10 @@ WorkMatch
                 <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y
                         participaciones</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'fact-create' %}">Hechos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!" data-bs-toggle="modal"
-                    data-bs-target="#tecnologias">Tecnologías</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">Tecnologías</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<!-- Modal -->
-<div class="modal fade" id="tecnologias" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        {% include 'datauser/stack_form.html' %}
-    </div>
-</div>
+
 {% endblock %}
