@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% block titulo %}Stacks{% endblock %}
 {% load static %}
 
 {% block estilo %}
@@ -22,7 +22,7 @@
 <script src="{% static 'js/stacks.js' %}"></script>
 
 <script>
-  var stacks = [];
+  let stacks = [];
   {% for item in object_list %}
     stacks.push('{{ item.name_stack }}'); // Adjust this line if you need a separator
   {% endfor %}
