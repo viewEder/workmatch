@@ -61,10 +61,9 @@ python manage.py runserver
 Los encagados del mantenimiento son :
 
 * Elizabeth Londoño Mora (https://github.com/Elizabeth1994-lon) 
+* WorkMatch Project (https://github.com/viewEder/workmatch)
 
 Este protecto estuvo bajo la turotia del personal de View
 
 * Eder Lara (https://github.com/viewEder)
-  Specialized in consulting and planning of Drupal powered sites, UNLEASHED MIND
-  offers installation, development, theming, customization, and hosting to get
-  you started. Visit https://www.unleashedmind.com for more information.
+  Profesor de View Foundation, en colaboración con utcomfenalco.
