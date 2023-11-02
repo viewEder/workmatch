@@ -30,6 +30,7 @@ Para que el aplicativo funcione corretamente debe contar con los siguientes paqu
 * Pillow==10.0.0
 * psycopg2==2.9.6
 * python-dotenv==1.0.0
+* requests
 
 ## RECOMMENDED
 
