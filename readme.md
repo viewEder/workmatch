@@ -32,6 +32,11 @@ Para que el aplicativo funcione corretamente debe contar con los siguientes paqu
 * python-dotenv==1.0.0
 * requests
 
+Recuerde instalar el paquete directamente ejecutando:
+```
+  pip install -r requirements.txt
+```
+
 ## RECOMMENDED
 
 |   Navegador |	Versión |
