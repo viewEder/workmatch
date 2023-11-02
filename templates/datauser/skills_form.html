@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block estilo %}
-
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock %}
 {% block contenido %}
 {% include 'core/menu.html' %}
@@ -49,10 +49,11 @@
     </button>
     <div class="row">
         {% for item in object_list %}
-            <div class="card mb-3 col-3">
+        <div class="col-md-3 mb-3">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.skill }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text-scroll-100">{{ item.description }}</p>
                 </div>
                 <div class="card-footer">
                     <small class="text-body-secondary">
@@ -60,6 +61,7 @@
                     </small>
                 </div>
             </div>
+        </div>
         {% empty %}
         <p class="text-center">Aún no has registrado tus habilidades. Empecemos!!</p>
         {% endfor %}

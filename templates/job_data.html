@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Ofertas Laborales{% endblock %}
+{% load static %}
+
+{% block contenido %}
+{% include 'core/menu.html' %}
+{% if api_data %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <a class="btn btn-sm btn-info col-sm-3 mt-3 mb-3 text-light" href="{% url 'inicio' %}">Volver al inicio</a>
+        </div>
+        <h1 class="p-3">Ofertas Laborales</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        {% for job in api_data %}
+        <div class="col">
+            <div class="card shadow mb-3">
+                <div class="card-header">
+                    <strong>{{ job.title }}</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Compañía:</strong> {{ job.company_name }}</li>
+                    <li class="list-group-item"><strong>Ubicación:</strong> {{ job.location }}</li>
+                    <li class="list-group-item"><strong>Remoto:</strong> {% if job.remote %}Si{% else %}No{% endif %}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{ job.url }}" class="card-link" target="_blank" rel="noopener noreferrer">Más
+                        información</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary"><strong>Fecha Oferta: </strong>{{ job.created_at|date:"Y-m-d H:i:s" }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<p>{{ error_message }}</p>
+{% endif %}
+{% endblock %}

@@ -1,9 +1,12 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
 {% block contenido %}
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container px-5">
+    <div class="container-fluid">
         <a class="navbar-brand" {% if request.user.is_authenticated %} href="{% url 'perfil' %}" {% else %} href="/" {% endif %}>
             {% if request.user.is_authenticated %}
                 {{ request.user.first_name }} {{ request.user.last_name }}
@@ -17,14 +20,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {% if request.user.is_authenticated %}
                 <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'perfil-edit' %}">Datos básicos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'academy-create' %}">Academia</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'excerp-create' %}">Resúmenes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'skills-create' %}">Habilidades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'history-create' %}">Historia laboral</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y participaciones</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'fact-create' %}">Hechos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'stack-create' %}">Tecnologías</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="#">
+                          Opciones
+                        </a>
+                        <ul class="custom-dropdown">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'perfil-edit' %}">Datos básicos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'academy-create' %}">Academia</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'excerp-create' %}">Resúmenes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'skills-create' %}">Habilidades</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'history-create' %}">Historia laboral</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'project-create' %}">Proyectos y participaciones</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'fact-create' %}">Hechos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'stack-create' %}">Tecnologías</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Ver Perfil</a></li>
+                        </ul>
+                    </li>
                 </ul>
             {% else %}
                 <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
@@ -34,4 +46,5 @@
         </div>
     </div>
 </nav>
+<script src="{% static 'js/custom.js' %}"></script>
 {% endblock %}

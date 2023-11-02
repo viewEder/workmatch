@@ -17,6 +17,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django import forms
 
+import requests
+from datetime import datetime 
+
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
 class AcademyCreateView(CreateView, ListView):
@@ -45,7 +48,7 @@ class EmploymentHistoryListView(ListView):
 
 @method_decorator(login_required, name='dispatch')
 class SkillsCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('skills-create')
     template_name = 'datauser/skills_form.html'
     form_class = SkillsCreateForm
     model = Skills
@@ -61,7 +64,7 @@ class SkillsCreateView(CreateView, ListView):
 
 @method_decorator(login_required, name='dispatch')
 class HistoryCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('history-create')
     template_name = 'datauser/history_form.html'
     form_class = HistoryCreateForm
     model = EmploymentHistory
@@ -77,7 +80,7 @@ class HistoryCreateView(CreateView, ListView):
     
 @method_decorator(login_required, name='dispatch')
 class ProjectCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('project-create')
     template_name = 'datauser/project_form.html'
     form_class =ProjectCreateForm
     model = ProjectDev
@@ -93,7 +96,7 @@ class ProjectCreateView(CreateView, ListView):
 
 @method_decorator(login_required, name='dispatch')
 class StackCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('stack-create')
     template_name = 'datauser/stack_form.html'
     form_class = StackCreateForm
     model = Stack
@@ -104,7 +107,7 @@ class StackCreateView(CreateView, ListView):
 
 @method_decorator(login_required, name='dispatch')
 class FactsCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('fact-create')
     template_name = 'datauser/facts_form.html'
     form_class = FactsCreateForm
     model = Facts
@@ -117,3 +120,21 @@ class FactsCreateView(CreateView, ListView):
     def get_queryset(self):
         """ Método para filtrar los datos del usuario que se encuentra logueado """
         return super().get_queryset().filter(user = self.request.user.id)
+
+
+def get_job_data(request):
+    api_url = "https://www.arbeitnow.com/api/job-board-api"
+
+    try:
+        response = requests.get(api_url)
+
+        if response.status_code == 200:
+            data = response.json().get('data', [])
+            for job in data:
+                job['created_at'] = datetime.fromtimestamp(job['created_at'])
+            return render(request, 'job_data.html', {'api_data': data})
+        else:
+            return render(request, 'job_data.html', {'error_message': 'API request failed'})
+
+    except requests.exceptions.RequestException as e:
+        return render(request, 'job_data.html', {'error_message': 'API request error'})

@@ -201,7 +201,7 @@ class ProfileUserUpdate(UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class ExcerpCreateView(CreateView, ListView):
-    success_url = reverse_lazy('perfil-edit')
+    success_url = reverse_lazy('excerp-create')
     template_name = 'registration/excerp_form.html'
     form_class = ExcerpCreateForm
     model = Excerp
