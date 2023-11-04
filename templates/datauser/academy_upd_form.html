@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Academia{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Actualizar Registros Académicos</h1>
+    <form method="post" class="border p-4 row">
+        {% csrf_token %}
+        <div class="mb-3 col-6">
+            <label for="id_type_degree">Tipo de Educación</label>
+            {{ form.type_degree }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_academy_name">Institución Educativa</label>
+            {{ form.academy_name }}
+        </div>
+        <div class="mb-3 col-12">
+            <label for="id_degree_obtained">Grado Obtenido</label>
+            {{ form.degree_obtained }}
+        </div>
+        <div class="mb-3 col-12">
+            <label for="id_degree_esp">Especialidad del Grado</label>
+            {{ form.degree_esp }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_start_date">Fecha de Inicio de Estudios</label>
+            {{ form.start_date }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_finish_date">Fecha de Graduación</label>
+            {{ form.finish_date }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_in_progress">Aún estudio aquí</label>
+            {{ form.in_progress }}
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'academy-create' %}" class="btn btn-outline-dark">Cancelar</a>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar Estudios</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

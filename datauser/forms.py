@@ -11,8 +11,8 @@ class AcademyCreateForm(forms.ModelForm):
             'academy_name': forms.TextInput(attrs={'class':'form-control'}),
             'degree_obtained': forms.TextInput(attrs={'class':'form-control'}),
             'degree_esp': forms.TextInput(attrs={'class':'form-control'}),
-            'start_date': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
-            'finish_date': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
+            'start_date': forms.DateInput(attrs={'class':'form-control'}),
+            'finish_date': forms.DateInput(attrs={'class':'form-control'}),
             'in_progress': forms.CheckboxInput(attrs={'class':'form-check-input'}),
         }
 

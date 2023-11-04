@@ -65,10 +65,10 @@ python manage.py runserver
 
 Los encagados del mantenimiento son :
 
-* Elizabeth Londoño Mora (https://github.com/Elizabeth1994-lon) 
+* Omar Augusto Bautista Mora (https://github.com/oabm77) 
 * WorkMatch Project (https://github.com/viewEder/workmatch)
 
-Este protecto estuvo bajo la turotia del personal de View
+Este protecto estuvo bajo la tutoría del personal de View
 
 * Eder Lara (https://github.com/viewEder)
   Profesor de View Foundation, en colaboración con utcomfenalco.

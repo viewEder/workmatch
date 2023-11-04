@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Modifica tus datos {{ request.user }}{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+
+<!-- Modal -->
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Actualizar Resúmenes</h1>
+    <form method="post" class="border p-4 row">
+        {% csrf_token %}
+        <div class="mb-3 col-12">
+            <label for="id_excerption_type">Tipo de resumen</label>
+            {{ form.excerption_type }}
+        </div>
+        <div class="mb-3 col-12 text-center">
+            <label for="id_content">Contenido</label><br>
+            {{ form.content }}
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'excerp-create' %}" class="btn btn-outline-dark">Cancelar</a>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar Resumen</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

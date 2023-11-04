@@ -3,22 +3,23 @@
 {% load static %}
 
 {% block estilo %}
-
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock %}
 {% block contenido %}
-    {% include 'core/menu.html' %}
-   
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+{% include 'core/menu.html' %}
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form method="post">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 h3" id="exampleModalLabel">Agregar Hechos</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <section class="container mt-3 row">          
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 h3" id="exampleModalLabel">Agregar Hechos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="container mt-3 row">
                         {% csrf_token %}
                         <div class="mb-3 col-6">
                             <label for="id_fact">Hecho</label>
@@ -28,40 +29,65 @@
                             <label for="id_value">Cantidad</label>
                             {{ form.value }}
                         </div>
-                </section>
-            </div>
+                    </section>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-success">Guardar Hecho</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<button onclick="topFunction()" id="go-top" title="Ir arriba">Ir arriba</button>
+<section class="container mt-3">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Agregar Hecho
+    </button>
+    <div class="row">
+        <div class="{% if object_list %} d-flex flex-wrap card-group {% endif %}">
+            {% for item in object_list %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ item.fact }}
+                        &nbsp<a href="{% url 'fact-update' pk=item.id %}" title="Modificar"><i
+                                class="fa-solid fa-pen-to-square"></i></a>                        
+                    </h5>
+                    <input type="hidden" id="id-{{ item.id }}" value="{% url 'fact-delete' pk=item.id %}">
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">
+                        Cantidad: {{ item.value }}
+                        <a href="#" title="Eliminar" id="delbtn" class="place-top-right" data-bs-toggle="modal"
+                            data-bs-target="#factModal" onclick="changeHref({{ item.id }});"><i
+                                class="fa-solid fa-file-circle-xmark text-danger"></i></a>
+                    </small>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">Aún no has registrado tus hechos. Empecemos!!</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="factModal" tabindex="-1" aria-labelledby="factModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="factModalLabel">Eliminar Hecho</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea eliminar este hecho?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="#" id="anchorbtn" class="btn btn-primary">Eliminar</a>
             </div>
         </div>
     </div>
-   
-    <section class="container mt-3">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Agregar Hecho
-        </button>
-        <div class="row">
-            <div class="{% if object_list %} d-flex flex-wrap card-group {% endif %}">
-            {% for item in object_list %}
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.fact }}</h5>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-body-secondary">
-                            Cantidad: {{ item.value }}
-                        </small>
-                    </div>
-                </div>
-            {% empty %}
-                <p class="text-center">Aún no has registrado tus hechos. Empecemos!!</p>
-            {% endfor %}
-            </div>
-        </div>        
-    </section>
-
+</div>
 {% endblock %}

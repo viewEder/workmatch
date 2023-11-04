@@ -52,8 +52,13 @@
         <div class="col-md-3 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ item.skill }}</h5>
+                    <h5 class="card-title">
+                        {{ item.skill }}
+                        &nbsp<a href="{% url 'skills-update' pk=item.id %}" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="#" title="Eliminar" id="delbtn" class="place-top-right" data-bs-toggle="modal" data-bs-target="#skillModal" onclick="changeHref({{ item.id }});"><i class="fa-solid fa-file-circle-xmark text-danger"></i></a>
+                    </h5>
                     <p class="card-text-scroll-100">{{ item.description }}</p>
+                    <input type="hidden" id="id-{{ item.id }}" value="{% url 'skills-delete' pk=item.id %}">
                 </div>
                 <div class="card-footer">
                     <small class="text-body-secondary">
@@ -67,4 +72,22 @@
         {% endfor %}
     </div>
 </section>
+<button onclick="topFunction()" id="go-top" title="Ir arriba">Ir arriba</button>
+<div class="modal fade" id="skillModal" tabindex="-1" aria-labelledby="skillModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="skillModalLabel">Eliminar Habilidad</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea eliminar esta habilidad?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="#" id="anchorbtn" class="btn btn-primary">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

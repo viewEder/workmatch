@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic import CreateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 
 # Método decorador de login:
 from django.utils.decorators import method_decorator
@@ -20,6 +20,7 @@ from .forms import SingUpUserFormWithEmail, ProfileUserForm, ExcerpCreateForm
 
 from django.urls import reverse_lazy
 from django import forms
+from django.http import HttpResponseRedirect
 from core.util import get_edad
 
 # Create your views here.
@@ -214,3 +215,36 @@ class ExcerpCreateView(CreateView, ListView):
     def get_queryset(self):
         """ Método para filtrar los datos del usuario que se encuentra logueado """
         return super().get_queryset().filter(user = self.request.user.id)
+
+@method_decorator(login_required, name='dispatch')
+class ExcerpUpdateView(UpdateView):
+    success_url = reverse_lazy('excerp-create')
+    template_name = 'registration/excerp_upd_form.html'
+    form_class = ExcerpCreateForm
+
+    # Métodos:
+    def get_object(self):
+        excerp, created = Excerp.objects.get_or_create(id = self.kwargs['pk'])
+        return excerp
+    
+    def form_valid(self, form):
+        """ Cuando el formulario se envía, el campo foreign key USER lo tomará del usuario logueado """
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class ExcerpDeleteView(DeleteView):
+    model = Excerp
+    success_url = reverse_lazy('excerp-create')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.delete()
+        return self.redirect_to_response(success_url)
+    
+    def redirect_to_response(self, success_url):
+        return HttpResponseRedirect(success_url)

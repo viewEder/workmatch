@@ -29,4 +29,26 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+    let goTopBtn = document.getElementById("go-top");
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        goTopBtn.style.display = "block";
+    } else {
+        goTopBtn.style.display = "none";
+    }
+    }
 });
+
+const changeHref = (id) => {
+    const path = document.getElementById("id-"+id).value;
+    document.getElementById("anchorbtn").href = path;
+}
+
+const topFunction = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

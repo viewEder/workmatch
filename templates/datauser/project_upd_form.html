@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Proyectos{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Actualizar proyectos desarrollados</h1>
+    <form method="post" class="border p-4 row">
+        {% csrf_token %}
+        <div class="mb-3 col-6">
+            <label for="id_stack">Tecnologias Usadas</label>
+            {{ form.stack }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_name_project">Nombre de Proyecto</label>
+            {{ form.name_project }}
+        </div>
+        <div class="mb-3 col-12">
+            <label for="id_resume_project">Descripcion</label>
+            {{ form.resume_project }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_url_repo">Url Repositorio</label>
+            {{ form.url_repo }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_year_production">Año en Producción</label>
+            {{ form.year_production }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_developing">Aún en desarrollo</label>
+            {{ form.developing }}
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'project-create' %}" class="btn btn-outline-dark">Cancelar</a>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar Proyecto</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

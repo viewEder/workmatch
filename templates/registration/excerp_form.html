@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block estilo %}
-
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock %}
 {% block contenido %}
     {% include 'core/menu.html' %}
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-   
+    <button onclick="topFunction()" id="go-top" title="Ir arriba">Ir arriba</button>
     <section class="container mt-3">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -47,10 +47,15 @@
         <div class="row">            
             {% for item in object_list|dictsortreversed:"pk" %}
                 <div class="card border-primary mb-3 col-6">
-                    <div class="card-header">{{ item.get_excerption_type_display }}</div>
+                    <div class="card-header">
+                        {{ item.get_excerption_type_display }}
+                        &nbsp<a href="{% url 'excerp-update' pk=item.id %}" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="#" title="Eliminar" id="delbtn" class="place-top-right" data-bs-toggle="modal" data-bs-target="#excerpModal" onclick="changeHref({{ item.id }});"><i class="fa-solid fa-file-circle-xmark text-danger"></i></a>
+                    </div>
                     <div class="card-body text-primary">
                         <h5 class="card-title">{{ item.created }}</h5>
                         <p class="card-text">{{ item.content|safe }}</p>
+                        <input type="hidden" id="id-{{ item.id }}" value="{% url 'excerp-delete' pk=item.id %}">
                     </div>                    
                 </div>
             {% empty %}
@@ -59,4 +64,21 @@
         </div>        
     </section>
 
+    <div class="modal fade" id="excerpModal" tabindex="-1" aria-labelledby="excerpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="excerpModalLabel">Eliminar Resumen</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar este resumen?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a href="#" id="anchorbtn" class="btn btn-primary">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

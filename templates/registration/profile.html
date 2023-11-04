@@ -141,8 +141,8 @@
               <div class="row skills-content data-aos="fade-up"">
       
                   {% for item in habilidades %}
-                    <div class="progress col-6" role="progressbar" aria-label="Example with label" aria-valuenow="{{ item.level }}" aria-valuemin="0" aria-valuemax="100">
-                      <div class="progress-bar bg-success" style="width: {{ item.level }}%">{{item.skill}} {{ item.level }}%</div>
+                    <div class="progress col-6 mb-1" role="progressbar" aria-label="Example with label" aria-valuenow="{{ item.level }}" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: {{ item.level }}%">{{item.skill}} {{ item.level }}%</div>
                     </div>
                   {% endfor %}
       
@@ -194,8 +194,27 @@
   <!-- ======= logros ======= --> 
         <section class="resume-section" id="awards">
           <div class="resume-section-content">
+            <div class="lead mb-5">
+              <h2>Logros</h2>
+              <p class="lead mb-5">
+                {% for item in excerp %}
+                        {% if item.excerption_type == 6 %}
+                          {{ item.content|safe }}
+                        {% endif %}
+                {% endfor %}             
+              </p>
+            </div>
               <div class="lead mb-5">
-                <h2 class="mb-5">Logros</h2>
+                <h2 class="mb-5">Hechos</h2>
+                {% for fact in hechos %}
+                <p class="text-start"><i class="fa-solid fa-people-group"></i> <strong>{{ fact.fact }}:</strong>{{ fact.value }}</p>
+                {% empty %}
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+                        <div class="icon"><i class="bi bi-briefcase"></i></div>
+                        <h4 class="title"><a href="">Aún no se han concretado los logros</a></h4>
+                        <p class="description">Me encuentro en proceso de adquisición de experiencia laboral que me permitirá demostrar mis alcances profesionales.</p>
+                    </div>
+                {% endfor %}
               </div>
           </div>
         </section>

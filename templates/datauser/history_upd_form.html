@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Historia Laboral{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Actualizar historia laboral</h1>
+    <form method="post" class="border p-4 row">
+        {% csrf_token %}
+        <div class="mb-3 col-6">
+            <label for="id_stack">Tecnologias Usadas</label>
+            {{ form.stack }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_company">Empresa</label>
+            {{ form.company }}
+        </div>
+        <div class="mb-3 col-12">
+            <label for="id_position">Cargo</label>
+            {{ form.position }}
+        </div>
+        <div class="mb-3 col-12 text-center">
+            <label for="id_job_description">Funciones Desempeñadas</label><br>
+            {{ form.job_description }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_start_date">Fecha de Inicio</label>
+            {{ form.start_date }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_end_date">Fecha de Culminación</label>
+            {{ form.end_date }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_still_work">Aún trabajo allí</label>
+            {{ form.still_work }}
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'history-create' %}" class="btn btn-outline-dark">Cancelar</a>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar historia</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

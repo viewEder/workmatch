@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block titulo %}Habilidades{% endblock %}
+{% load static %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+{% block contenido %}
+{% include 'core/menu.html' %}
+<section class="container mb-5">
+    <h1 class="h3 mt-5 mb-5">Actualizar habilidad</h1>
+    <form method="post" class="border p-4 row">
+        {% csrf_token %}
+        <div class="mb-3 col-6">
+            <label for="id_skill">Habilidad</label>
+            {{ form.skill }}
+        </div>
+        <div class="mb-3 col-6">
+            <label for="id_level">Nivel</label>
+            {{ form.level }}
+        </div>
+        <div class="mb-3 col-12">
+            <label for="id_description">Descripción</label>
+            {{ form.description }}
+        </div>
+        <div class="col-12 mt-3">
+            <div class="row justify-content-end">
+                <div class="col-3">
+                    <a href="{% url 'skills-create' %}" class="btn btn-outline-dark">Cancelar</a>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Actualizar habilidad</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

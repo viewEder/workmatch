@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block estilo %}
-
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock %}
 {% block contenido %}
     {% include 'core/menu.html' %}
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-   
+    <button onclick="topFunction()" id="go-top" title="Ir arriba">Ir arriba</button>
     <section class="container mt-3">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -68,10 +68,15 @@
         <div class="row">
             {% for item in object_list %}
                 <div class="card border-success mb-3 col-3" >
-                    <div class="card-header bg-transparent border-success">{{item.type_degree}} &nbsp;<a href="" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="card-header bg-transparent border-success">
+                        {{item.type_degree}} 
+                        &nbsp<a href="{% url 'academy-update' pk=item.id %}" title="Modificar"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="#" title="Eliminar" id="delbtn" class="place-top-right" data-bs-toggle="modal" data-bs-target="#academyModal" onclick="changeHref({{ item.id }});"><i class="fa-solid fa-file-circle-xmark text-danger"></i></a>
+                    </div>
                     <div class="card-body text-success">
                     <h5 class="card-title">{{ item.academy_name }}</h5>
                     <p class="card-text">{{ item.degree_obtained }} - {{ item.degree_esp }}</p>
+                    <input type="hidden" id="id-{{ item.id }}" value="{% url 'academy-delete' pk=item.id %}">
                     </div>
                     <div class="card-footer bg-transparent text-center border-success">Graduado desde {{ item.finish_date|date:"Y" }} </div>
                 </div>
@@ -81,4 +86,21 @@
         </div>        
     </section>
 
+<div class="modal fade" id="academyModal" tabindex="-1" aria-labelledby="academyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="academyModalLabel">Eliminar Estudios</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea eliminar este estudio?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="#" id="anchorbtn" class="btn btn-primary">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
